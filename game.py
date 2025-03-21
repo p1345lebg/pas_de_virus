@@ -21,7 +21,7 @@ class Game:
     def run(self) -> None:
         running : bool = True
         clock = pygame.time.Clock()
-        
+
         output : list
 
         while running:
@@ -42,6 +42,9 @@ class Game:
             clock.tick(self.settings.get_FPS())
 
     def handle_output(self, output : list) -> None:
+        if output[0] == 'nono':
+            return
+        
         if output[0] == 'settings':
             self.settings.handle_input(output[1:])
 
