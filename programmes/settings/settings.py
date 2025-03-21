@@ -11,9 +11,10 @@ class Settings:
     def handle_input(self, input):
         match input[0]:
             case 'save':
-                with open(os.path.join(self.PATH,'settings.json'), 'w') as file:
-                    json.dump(self.settings, file, indent=2)
-                self.saved = True
+                if not self.saved:
+                    with open(os.path.join(self.PATH,'settings.json'), 'w') as file:
+                        json.dump(self.settings, file, indent=2)
+                    self.saved = True
 
             case 'windowSize':
                 self.settings['windowSize'] = input[1] if type(input[1]) == tuple[int,int] else (960,600)
@@ -33,11 +34,6 @@ class Settings:
                     self.settings = json.load(file)
                 self.saved = False
 
-
-    def save(self) -> None:
-        with open(self.PATH, 'w') as file:
-            json.dump(self.settings, file, indent=2)
-        self.saved = True
 
     def get_window_size(self) -> tuple[int,int]:
         return self.settings['windowSize']
