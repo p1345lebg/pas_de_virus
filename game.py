@@ -3,6 +3,7 @@ from os import path
 
 from programmes.settings import Settings
 from programmes.menu import Menu
+from programmes.pasDeVirus import PasDeVirus
 
 def main():
     game = Game()
@@ -57,7 +58,7 @@ class Game:
                 self.active.handle_input(output[1:])
         
             case 'pasDeVirus':
-                if type(self.active) != Menu:
+                if type(self.active) != PasDeVirus:
                     self.active = Menu()
                 self.active.handle_input(output[1:])
 
