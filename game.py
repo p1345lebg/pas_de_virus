@@ -44,7 +44,7 @@ class Game:
             clock.tick(self.settings.get_FPS())
 
     def handle_output(self, output : list) -> None:
-        if output[0] == 'nono':
+        if output[0] == 'none':
             return
         
         if output[0] == 'settings':
