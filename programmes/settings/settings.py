@@ -42,10 +42,6 @@ class Settings:
     def get_window_size(self) -> tuple[int,int]:
         return self.settings['windowSize']
 
-    def set_window_size(self, newSize : tuple[int,int] = (960,600)) -> None:
-        self.settings['windowSize'] = newSize
-        self.saved = False
-
     def get_FPS(self) -> int:
         return self.settings['FPS']
 
