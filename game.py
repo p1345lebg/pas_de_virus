@@ -44,21 +44,22 @@ class Game:
             clock.tick(self.settings.get_FPS())
 
     def handle_output(self, output : list) -> None:
-        if output[0] == 'none':
-            return
-        
-        if output[0] == 'settings':
-            self.settings.handle_input(output[1:])
+        match output[0]:
+            case 'none':
+                return
+                
+            case 'settings':
+                self.settings.handle_input(output[1:])
 
-        elif output[0] == 'menu':
-            if type(self.active) != Menu:
-                self.active = Menu()
-            self.active.handle_input(output[1:])
+            case 'menu':
+                if type(self.active) != Menu:
+                    self.active = Menu()
+                self.active.handle_input(output[1:])
         
-        elif output[0] == 'pasDeVirus':
-            if type(self.active) != Menu:
-                self.active = Menu()
-            self.active.handle_input(output[1:])
+            case 'pasDeVirus':
+                if type(self.active) != Menu:
+                    self.active = Menu()
+                self.active.handle_input(output[1:])
 
 
 
