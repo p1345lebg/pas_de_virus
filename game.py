@@ -1,7 +1,7 @@
 import pygame
 from os import path
 
-from programmes.settings.settings import Settings
+from programmes.settings import Settings
 from programmes.menu import Menu
 
 def main():

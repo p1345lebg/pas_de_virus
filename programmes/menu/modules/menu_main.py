@@ -12,10 +12,8 @@ class MenuMain:
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.dict['button'] == 1:
-                    print(screen.get_size())
-                    return ['settings','windowSize',(10,10)]
+                    return ['settings','windowSize',(580,300)]
                 if event.dict['button'] == 3:
-                    print(screen.get_size())
                     return ['settings','windowSize',(960,600)]
                 if event.dict['button'] == 2:
                     return ['settings','save']

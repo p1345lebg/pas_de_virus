@@ -1,10 +1,11 @@
 import os
 import json
+import pygame
 
 class Settings:
     def __init__(self) -> None:
         self.PATH : str = os.path.join(os.path.dirname(__file__),'..','..','data','settings')
-        with open(self.PATH,'r') as file:
+        with open(os.path.join(self.PATH,'settings.json'),'r') as file:
             self.settings : dict = json.load(file)
         self.saved : bool = True
 
@@ -14,10 +15,11 @@ class Settings:
                 if not self.saved:
                     with open(os.path.join(self.PATH,'settings.json'), 'w') as file:
                         json.dump(self.settings, file, indent=2)
+                        pygame.display.set_mode(self.settings['windowSize'])
                     self.saved = True
 
             case 'windowSize':
-                self.settings['windowSize'] = input[1] if type(input[1]) == tuple[int,int] else (960,600)
+                self.settings['windowSize'] = input[1] if type(input[1]) == tuple else (960,600)
                 self.saved = False
 
             case 'FPS':
