@@ -15,7 +15,8 @@ class PasDeVirus:
                 self.active = update
 
     def handle_output(self, output):
-        if output[0] == 'pasDeVirus':
-            self.handle_input(output[1:])
-        else:
-            return output
+        if output:
+            if output[0] == 'pasDeVirus':
+                self.handle_input(output[1:])
+            else:
+                return output
