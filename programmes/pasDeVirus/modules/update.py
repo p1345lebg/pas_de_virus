@@ -14,7 +14,7 @@ class Update:
                         ["empty", "empty", "empty", "empty"], 
                             ["empty", "empty", "empty"],
                         ["empty", "empty", "empty", "empty"]]
-        self.screen = screen
+        self.screen = pygame.display.set_mode(self.settings.get_window_size())       
         self.drawPieces = drawPieces.DrawPieces(self.screen)
 
     def run(self, events, screen):
