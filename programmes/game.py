@@ -46,7 +46,7 @@ class Game:
             
 
             #temporaire
-            # self.update.run()
+            self.update.run()
 
             # Cursor custom
             mouse_x, mouse_y = pygame.mouse.get_pos()

@@ -14,7 +14,7 @@ class Button(pygame.sprite.Sprite):
 
 
         self.size = size
-
+        
         self.PATH_texture = os.path.join(os.path.dirname(__file__),'..','..','assets',texture)
         self.texture = pygame.transform.scale(pygame.image.load(self.PATH_texture).convert_alpha(),size)
         if texture_hoover:
@@ -28,9 +28,10 @@ class Button(pygame.sprite.Sprite):
         
 
         self.hitbox : pygame.Rect = self.texture.get_rect()
-        
 
-    def draw(self,screen : pygame.Surface):
+        self.position = position
+
+    def update(self,screen : pygame.Surface, click : bool = False):
         cursor_pos = pygame.mouse.get_pos()
         texture : pygame.Surface = pygame.Surface(self.size)
 
@@ -40,5 +41,11 @@ class Button(pygame.sprite.Sprite):
             texture.blit(self.texture,(0,0))
 
         texture.blit(self.text,self.text.get_rect(center=self.hitbox.center))
+
+        screenSize = screen.get_size()
+        match self.position[2]:
+            case 'top-left':
+                screen.blit(texture,(0,0))
+
         screen.blit(texture,(0,0))
 
