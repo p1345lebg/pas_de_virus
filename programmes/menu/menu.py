@@ -26,7 +26,8 @@ class Menu:
                 self.active = MenuMain()
 
     def handle_output(self, output):
-        if output[0] == 'main_menu':
-            self.handle_input(output[1:])
-        else:
-            return output
+        if output:
+            if output[0] == 'main_menu':
+                self.handle_input(output[1:])
+            else:
+                return output
