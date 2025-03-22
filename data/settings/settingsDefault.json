@@ -1,4 +1,5 @@
 {
   "windowSize" : [960,600],
-  "FPS" : 60
+  "FPS" : 60,
+  "mouseSize" : [40,40]
 }

@@ -36,10 +36,16 @@ class Settings:
                     self.settings = json.load(file)
                 self.saved = False
 
+            case 'mouseSize':
+                self.settings['mouseSize'] = input[1] if type(input[1]) == int else 60
+                self.saved = False
 
     def get_window_size(self) -> tuple[int,int]:
         return self.settings['windowSize']
 
     def get_FPS(self) -> int:
         return self.settings['FPS']
+    
+    def get_mouse_size(self):
+        return self.settings['mouseSize']
 
