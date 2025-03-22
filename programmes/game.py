@@ -53,6 +53,8 @@ class Game:
             self.screen.blit(self.custom_cursor, (mouse_x, mouse_y))
             pygame.display.flip()
             clock.tick(self.settings.get_FPS())
+        
+        pygame.quit()
 
     def handle_output(self, output : list) -> None:
         match output[0]:
