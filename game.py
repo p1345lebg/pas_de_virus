@@ -19,6 +19,11 @@ class Game:
         pygame.display.set_caption('mon jeu')
         pygame.display.set_icon(pygame.image.load(path.join(PATH_ASSETS,'icone.png')).convert_alpha())
 
+        PATH_ASSETS_CUTE = path.join(path.dirname(__file__),'assets','SproutLand')
+        pygame.mouse.set_visible(False)
+        self.custom_cursor = pygame.image.load(path.join(PATH_ASSETS_CUTE, 'Sprite sheets', 'Mouse sprites', 'Triangle Mouse icon 1.png')).convert_alpha()
+
+
         self.active = Menu()
 
     def run(self) -> None:
@@ -40,6 +45,9 @@ class Game:
             
             self.handle_output(output)
             
+            # Cursor custom
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            self.screen.blit(self.custom_cursor, (mouse_x, mouse_y))
 
             pygame.display.flip()
             clock.tick(self.settings.get_FPS())
