@@ -7,7 +7,9 @@ class Menu:
         self.active = MenuMain(self.screen)
 
     def update(self, events, screen) -> list:
-        self.handle_output(self.active.update(events, screen))
+        output = self.active.update(events, screen)
+        if output:
+            return self.handle_output(output)
 
     def handle_input(self, input : list):
         match input[0]:

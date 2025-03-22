@@ -19,7 +19,7 @@ class Button(pygame.sprite.Sprite):
 
         PATH_TEXTURE = os.path.join(os.path.dirname(__file__),'..','..','assets',texture)
         PATH_TEXTURE_HOOVER = os.path.join(os.path.dirname(__file__),'..','..','assets',texture_hoover) if texture_hoover else None
-        self.PATH_FONT = os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf')
+        self.PATH_FONT = os.path.join(os.path.dirname(__file__),'..','..','assets','game','Jersey10-Regular.ttf')
         self.font : pygame.font.Font
 
         self.screen : pygame.Surface
@@ -75,13 +75,13 @@ class Button(pygame.sprite.Sprite):
         self.texture = pygame.transform.scale(self.TEXTURE, self.size)
         if self.TEXTURE_HOOVER:
             self.textureHoover = pygame.transform.scale(self.TEXTURE_HOOVER, self.size)
-        self.hitbox = self.texture.get_rect(topleft=(x, y))
+        self.hitbox = self.texture.get_rect(topleft=self.position)
 
         font_size = self.hitbox.height  # Commence par la hauteur du bouton
         while font_size > 0:
-            font = pygame.font.SysFont(self.PATH_FONT, font_size)
-            text_surface = font.render(self.TEXT, True, (0,0,0))
-            if text_surface.get_width() <= self.hitbox.width and text_surface.get_height() <= self.hitbox.height:
+            font = pygame.font.Font(self.PATH_FONT, font_size)
+            text_surface = font.render(self.TEXT, True, (255,255,255))
+            if text_surface.get_width() <= self.hitbox.width*0.8 and text_surface.get_height() <= self.hitbox.height*0.8:
                 break  # La taille de police convient
             font_size -= 1
         self.font = font
@@ -95,7 +95,7 @@ class Button(pygame.sprite.Sprite):
             self.screen.blit(self.texture, self.position)
 
         if self.TEXT:
-            text_surface = self.font.render(self.TEXT, True, (0, 0, 0))
+            text_surface = self.font.render(self.TEXT, True, (255, 255, 255))
             text_rect = text_surface.get_rect(center=self.hitbox.center)
             self.screen.blit(text_surface, text_rect)
 
