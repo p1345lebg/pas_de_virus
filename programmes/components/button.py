@@ -77,8 +77,20 @@ class Button(pygame.sprite.Sprite):
         self.TEXTURE : pygame.Surface = pygame.image.load(PATH_TEXTURE)
         self.TEXTURE_HOOVER : pygame.Surface = pygame.image.load(PATH_TEXTURE_HOOVER) if texture_hoover else None
         self.TEXT : str = text
+        
+        self.position : tuple[int,int]
+        self.size : tuple[int,int]
+        self.texture : pygame.Surface
+        self.textureHoover : pygame.Surface
 
     def update_screen(self, screen):
         self.screen = screen
+        screenSize_x = self.screen.get_width()
+        screenSize_y = self.screen.get_height()
+        x = self.POSITION[0]
+        y = self.POSITION[1]
+        match self.POSITION[2]:
+            case 'top-left':
+                self.position = (screenSize_x*x/100)
 
 
