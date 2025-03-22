@@ -51,11 +51,12 @@ class Button(pygame.sprite.Sprite):
 
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, position : tuple[int,int,str], size : tuple[int,int], action : list = ['none'], texture : str = 'default/button', texture_hoover : str = None, text : str = ''):
+    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,int], action : list = ['none'], texture : str = 'default/button', texture_hoover : str = None, text : str = ''):
         """
         bouton
 
         Args:
+            screen (pygame.Surface) : surface sur laquelle est dessiné le bouton
             position (tuple[int,int,str]) : poistion du bouton (en pourcentage), la troisieme valeur determine à partir d'où la position est calculée
             size (tuple[int,int]) : taille du bouton (en pourcentage par rapport a la fenetre)
             action (list) : liste contenant les action a effectuer par le bouton
@@ -66,13 +67,18 @@ class Button(pygame.sprite.Sprite):
         super().__init__()
 
         PATH_TEXTURE = os.path.join(os.path.dirname(__file__),'..','..','assets',texture)
-        PATH_TEXTURE_HOOVER = os.path.join(os.path.dirname(__file__),'..','..','assets',texture_hoover)
+        PATH_TEXTURE_HOOVER = os.path.join(os.path.dirname(__file__),'..','..','assets',texture_hoover) if texture_hoover else None
         self.font = pygame.font.Font(os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf'))
 
-        self.POSITION = position
-        self.SIZE = size
-        self.action = action
-        self.TEXTURE = pygame.image.load(PATH_TEXTURE)
-        self.TEXTURE_HOOVER = pygame.image.load(PATH_TEXTURE_HOOVER)
+        self.screen : pygame.Surface
+        self.POSITION : tuple[int,int,str] = position
+        self.SIZE : tuple[int,int] = size
+        self.action : list = action
+        self.TEXTURE : pygame.Surface = pygame.image.load(PATH_TEXTURE)
+        self.TEXTURE_HOOVER : pygame.Surface = pygame.image.load(PATH_TEXTURE_HOOVER) if texture_hoover else None
+        self.TEXT : str = text
+
+    def update_screen(self, screen):
+        self.screen = screen
 
 
