@@ -9,9 +9,9 @@ class DrawPieces:
         self.load_assets()
 
     def load_assets(self):
-        PATH_ASSETS_SHEET = path.join(path.dirname(__file__),'..', '..','assets','SproutTiles')
+        PATH_ASSETS_SHEET = path.join(path.dirname(__file__),'..','..', '..','assets','SproutTiles')
         self.sprite_sheet = pygame.image.load(path.join(PATH_ASSETS_SHEET, 'Objects', 'Basic_Grass_Biom_things.png')).convert_alpha()
-        self.water_lily = pygame.transform.scale(self.get_sprite(7, 4), (self.height/10.8, self.width/19.2))
+        self.water_lily = pygame.transform.scale(self.get_sprite(0, 3), (self.height/10.8, self.width/19.2))
         self.sizePiece = self.water_lily.get_size()
         self.widthOffset = self.width/12
         self.heightOffset = self.height/12
@@ -22,7 +22,7 @@ class DrawPieces:
         self.beginX4 = 0
         self.beginY4 = 0
 
-    def draw(self, ground):
+    def draw(self, ground, screen):
         # Pour les terrains de taille 3x3
         total_width3 = (2) * self.widthOffset + self.sizePiece[0]
         total_height3 = (6) * self.heightOffset + self.sizePiece[1]
@@ -38,9 +38,9 @@ class DrawPieces:
         for i in range(len(ground)):
             for y in range(len(ground[i])):
                 if len(ground[i]) % 4 != 0:
-                    self.draw_element(self.screen, ground[i][y], (y, i), (self.beginX3, self.beginY3))
+                    self.draw_element(screen, ground[i][y], (y, i), (self.beginX3, self.beginY3))
                 else:
-                    self.draw_element(self.screen, ground[i][y], (y, i), (self.beginX4, self.beginY4))
+                    self.draw_element(screen, ground[i][y], (y, i), (self.beginX4, self.beginY4))
     
     def draw_element(self, screen, element, position, begin):
         if element == "empty":

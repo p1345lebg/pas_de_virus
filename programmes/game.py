@@ -3,7 +3,8 @@ from os import path
 
 from programmes.settings import Settings
 from programmes.menu import Menu
-from programmes.pasDeVirus import update as PasDeVirus
+from programmes.pasDeVirus import PasDeVirus
+
 
 class Game:
     def __init__(self) -> None:
@@ -21,8 +22,7 @@ class Game:
         self.custom_cursor = pygame.transform.scale(self.custom_cursor, self.settings.get_mouse_size())
         
         #temporaire
-        self.update = PasDeVirus.Update()
-
+        self.active = PasDeVirus()
         self.active = Menu()
 
     def run(self) -> None:
