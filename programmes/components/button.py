@@ -39,7 +39,7 @@ class Button(pygame.sprite.Sprite):
         else:
             texture.blit(self.texture,(0,0))
 
-        text_rect = self.text.get_rect(center=self.rect.center)
+        text_rect = self.text.get_rect(center=self.hitbox.center)
         texture.blit(self.text, self.text.get_rect())
         screen.blit(texture,0,0,0)
 
