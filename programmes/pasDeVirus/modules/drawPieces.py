@@ -11,29 +11,41 @@ class DrawPieces:
     def load_assets(self):
         PATH_ASSETS_SHEET = path.join(path.dirname(__file__),'..','..', '..','assets','SproutTiles')
         self.sprite_sheet = pygame.image.load(path.join(PATH_ASSETS_SHEET, 'Objects', 'Basic_Grass_Biom_things.png')).convert_alpha()
-        self.water_lily = pygame.transform.scale(self.get_sprite(0, 3), (self.width/19.2, self.height/10.8))
+        smaller_size = min(self.width/19.2, self.height/10.8)
+        self.water_lily = pygame.transform.scale(self.get_sprite(0, 3), (smaller_size, smaller_size))
         self.sizePiece = self.water_lily.get_size()
+
+        width_height_compare = self.height * 1920/1080
+    
+        if width_height_compare != self.width:
+            if self.width / 1920/1080 < self.height:
+                self.width = self.height * 1920/1080
+            else:
+                self.height = self.width * 1920/1080
+        
         self.widthOffset = self.width/12
         self.heightOffset = self.height/12
         
-        # Var defini dans la fonction draw
+        # Variables definies dans la fonction draw
         self.beginX3 = 0
         self.beginY3 = 0
         self.beginX4 = 0
         self.beginY4 = 0
 
     def draw(self, ground, screen):
-        # Pour les terrains de taille 3x3
-        total_width3 = (2) * self.widthOffset + self.sizePiece[0]
-        total_height3 = (6) * self.heightOffset + self.sizePiece[1]
+
+        ground_width = len(ground[0]) #4
+        ground_height = len(ground) #3
+        
+        total_width3 = (ground_width - 2) * self.widthOffset + self.sizePiece[0]
+        total_height3 = (ground_height - 1) * self.heightOffset + self.sizePiece[1]
         self.beginX3 = (self.width - total_width3) / 2
-        self.beginY3 = (self.height - total_height3) / 2   
-        # Pour les terrains de taille 4x4
-        total_width4 = (3) * self.widthOffset + self.sizePiece[0]
-        total_height4 = (6) * self.heightOffset + self.sizePiece[1]
+        self.beginY3 = (self.height - total_height3) / 2
+    
+        total_width4 = (ground_width - 1) * self.widthOffset + self.sizePiece[0]
+        total_height4 = (ground_height - 1) * self.heightOffset + self.sizePiece[1]
         self.beginX4 = (self.width - total_width4) / 2
         self.beginY4 = (self.height - total_height4) / 2
-
 
 
         for i in range(len(ground)):
