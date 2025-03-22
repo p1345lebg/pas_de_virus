@@ -23,5 +23,5 @@ class Update:
 
         self.drawPieces.draw(self.ground, screen)
 
-    def manageEvents(events):
+    def manageEvents(self, events):
         pass
