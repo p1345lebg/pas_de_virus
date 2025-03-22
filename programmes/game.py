@@ -5,10 +5,6 @@ from programmes.settings import Settings
 from programmes.menu import Menu
 from programmes.pasDeVirus import PasDeVirus
 
-def main():
-    game = Game()
-    game.run()
-
 class Game:
     def __init__(self) -> None:
         pygame.init()
@@ -61,10 +57,3 @@ class Game:
                 if type(self.active) != PasDeVirus:
                     self.active = Menu()
                 self.active.handle_input(output[1:])
-
-
-
-
-
-if __name__ == '__main__':
-    main()

@@ -3,8 +3,7 @@ import os
 
 class Button(pygame.sprite.Sprite):
     def __init__(self,
-                 screen : pygame.Surface,
-                 position : tuple[tuple[str,str],int,int] = (('ratio','top-left'),0,0), 
+                 position : tuple[int,int,str] = (0,0,'top-left'),
                  size : tuple[int,int] = (10,10), 
                  action : list = ['none'],
                  *groups, 
@@ -14,7 +13,6 @@ class Button(pygame.sprite.Sprite):
                  font : str = 'default/font'):
         super().__init__(*groups)
 
-        self.screen = screen
 
         self.size = size
 
@@ -31,7 +29,7 @@ class Button(pygame.sprite.Sprite):
         self.hitbox = self.texture.get_rect()
         
 
-    def draw(self):
+    def draw(self,screen):
         cursor_pos = pygame.mouse.get_pos()
         texture : pygame.Surface = pygame.Surface(self.size)
 
