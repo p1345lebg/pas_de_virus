@@ -84,5 +84,7 @@ class Button(pygame.sprite.Sprite):
             text_rect = text_surface.get_rect(center=self.hitbox.center)
             self.screen.blit(text_surface, text_rect)
 
-    def handle_click():
-        mousePos = pygame.mouse.get_pos()
+    def handle_click(self):
+        cursor_pos = pygame.mouse.get_pos()
+        if self.hitbox.collidepoint(cursor_pos):
+            return self.action

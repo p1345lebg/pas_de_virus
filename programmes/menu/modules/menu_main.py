@@ -3,8 +3,9 @@ import os
 from programmes.components import Button
 
 class MenuMain:
-    def __init__(self) -> None:
+    def __init__(self, screen) -> None:
         self.buttons = {
+            Button(screen,(50,50,'middle'), (10,(16,9)), ['pasDeVirus', 'menu'])
         }
 
 
