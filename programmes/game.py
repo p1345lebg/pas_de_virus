@@ -5,15 +5,11 @@ from programmes.settings import Settings
 from programmes.menu import Menu
 from programmes.pasDeVirus import PasDeVirus
 
-def main():
-    game = Game()
-    game.run()
-
 class Game:
     def __init__(self) -> None:
         pygame.init()
         pygame.font.init()
-        PATH_ASSETS = path.join(path.dirname(__file__),'assets','game')
+        PATH_ASSETS = path.join(path.dirname(__file__),'..','assets','game')
         self.settings : Settings = Settings()
         self.screen = pygame.display.set_mode(self.settings.get_window_size())
         pygame.display.set_caption('mon jeu')
@@ -69,10 +65,3 @@ class Game:
                 if type(self.active) != PasDeVirus:
                     self.active = Menu()
                 self.active.handle_input(output[1:])
-
-
-
-
-
-if __name__ == '__main__':
-    main()
