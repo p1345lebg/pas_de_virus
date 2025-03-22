@@ -1,15 +1,8 @@
 {
   "windowSize": [
-    960,
-    600
+    1920,
+    1080
   ],
   "FPS": 60,
-  "mouseSize" : [40,40],
-  "ground" : [["empty", "empty", "empty", "empty"], 
-                ["empty", "empty", "empty"], 
-              ["empty", "empty", "empty", "empty"], 
-                ["empty", "empty", "empty"], 
-              ["empty", "empty", "empty", "empty"], 
-                ["empty", "empty", "empty"],
-              ["empty", "empty", "empty", "empty"]]
+  "mouseSize" : [40,40]
 }
