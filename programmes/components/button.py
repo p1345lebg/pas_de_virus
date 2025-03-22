@@ -9,8 +9,7 @@ class Button(pygame.sprite.Sprite):
                  *groups, 
                  texture : str = 'default/button.png', 
                  texture_hoover : str = None,
-                 text : str = '',
-                 font : str = 'default/font'):
+                 text : str = ''):
         super().__init__(*groups)
 
 
@@ -23,6 +22,8 @@ class Button(pygame.sprite.Sprite):
             self.texture = pygame.transform.scale(pygame.image.load(self.PATH_texture_hoover).convert_alpha(),size)
         else:
             self.texture_hoover = None
+
+        font = pygame.font.Font(os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf'))
         self.text = font.render(text, True, )
         
 
