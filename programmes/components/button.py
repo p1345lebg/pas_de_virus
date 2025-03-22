@@ -2,7 +2,7 @@ import pygame
 import os
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,tuple[int,int]], action : list = ['none'], texture : str = 'default/button', texture_hoover : str = None, text : str = ''):
+    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,tuple[int,int]], action : list = ['none'], texture : str = 'default/button.png', texture_hoover : str = None, text : str = ''):
         """
         bouton
 
@@ -19,14 +19,18 @@ class Button(pygame.sprite.Sprite):
 
         PATH_TEXTURE = os.path.join(os.path.dirname(__file__),'..','..','assets',texture)
         PATH_TEXTURE_HOOVER = os.path.join(os.path.dirname(__file__),'..','..','assets',texture_hoover) if texture_hoover else None
-        self.font = pygame.font.Font(os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf'))
+        self.PATH_FONT = os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf')
+        self.font : pygame.font.Font = pygame.font.Font(os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf'), 50)
 
         self.screen : pygame.Surface
         self.POSITION : tuple[int,int,str] = position
         self.SIZE : tuple[int,int] = size
         self.action : list = action
         self.TEXTURE : pygame.Surface = pygame.image.load(PATH_TEXTURE)
-        self.TEXTURE_HOOVER : pygame.Surface = pygame.image.load(PATH_TEXTURE_HOOVER) if texture_hoover else None
+        if texture_hoover:
+            self.TEXTURE_HOOVER : pygame.Surface = pygame.image.load(PATH_TEXTURE_HOOVER)
+        else:
+            self.TEXTURE_HOOVER =  None
         self.TEXT : str = text
         
         self.position : tuple[int,int]
@@ -42,9 +46,11 @@ class Button(pygame.sprite.Sprite):
         screenSize_x = self.screen.get_width()
         screenSize_y = self.screen.get_height()
 
-        width = screenSize_x//self.SIZE[0]*100
-        height = screenSize_x//self.SIZE[1][0]*self.SIZE[1][1]
+        width = screenSize_x*self.SIZE[0]//100
+        height = width//self.SIZE[1][0]*self.SIZE[1][1]
         self.size = (width, height)
+
+        self.font = pygame.font.Font(self.PATH_FONT, (60//100*height)//self.SIZE[1][1]*self.SIZE[1][0])
 
         x = self.POSITION[0]
         y = self.POSITION[1]
@@ -69,12 +75,13 @@ class Button(pygame.sprite.Sprite):
                 self.position = (screenSize_x*x/100-self.size[0], screenSize_y*y/100-self.size[1])
 
         self.texture = pygame.transform.scale(self.TEXTURE, self.size)
-        self.textureHoover = pygame.transform.scale(self.TEXTURE_HOOVER, self.size)
+        if self.TEXTURE_HOOVER:
+            self.textureHoover = pygame.transform.scale(self.TEXTURE_HOOVER, self.size)
         self.hitbox = self.texture.get_rect(topleft=(x, y))
 
     def draw(self):
         cursor_pos = pygame.mouse.get_pos()
-        if self.hitbox.collidepoint(cursor_pos):
+        if self.hitbox.collidepoint(cursor_pos) and self.TEXTURE_HOOVER:
             self.screen.blit(self.textureHoover, self.position)
         else:
             self.screen.blit(self.texture, self.position)
