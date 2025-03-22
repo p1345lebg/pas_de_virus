@@ -1,6 +1,5 @@
 from .modules import Menu
 
-
 from programmes.components import Button
 
 class PasDeVirus:
