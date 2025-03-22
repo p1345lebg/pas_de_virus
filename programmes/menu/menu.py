@@ -1,21 +1,10 @@
 from .modules import MenuMain
 
 class Menu:
+
     def __init__(self, screen):
-        self.active = MenuMain(screen)
-
-    def update(self, events, screen) -> list:
-        return self.active.update(events, screen)
-
-    def handle_input(self, input : list):
-        if input[0] == 'main_menu':
-            if type(self.active) == MenuMain:
-                print("deja dans le menu")
-                return ['error','existe deja']
-            self.active = MenuMain()
-
-    def __init__(self):
-        self.active = MenuMain()
+        self.screen = screen
+        self.active = MenuMain(self.screen)
 
     def update(self, events, screen) -> list:
         self.handle_output(self.active.update(events, screen))
@@ -23,7 +12,7 @@ class Menu:
     def handle_input(self, input : list):
         match input[0]:
             case 'menu':
-                self.active = MenuMain()
+                self.active = MenuMain(self.screen)
 
     def handle_output(self, output):
         if output:
