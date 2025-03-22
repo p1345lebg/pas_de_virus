@@ -54,6 +54,8 @@ class Game:
 
             pygame.display.flip()
             clock.tick(self.settings.get_FPS())
+        
+        pygame.quit()
 
     def handle_output(self, output : list) -> None:
         match output[0]:
