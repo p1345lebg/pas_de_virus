@@ -3,7 +3,7 @@ from os import path
 
 from programmes.settings import Settings
 from programmes.menu import Menu
-from programmes.pasDeVirus import PasDeVirus
+from programmes.pasDeVirus import update as PasDeVirus
 
 class Game:
     def __init__(self) -> None:
@@ -19,6 +19,9 @@ class Game:
         PATH_ASSETS_CUTE = path.join(path.dirname(__file__),'..','assets','SproutLand')
         self.custom_cursor = pygame.image.load(path.join(PATH_ASSETS_CUTE, 'Sprite sheets', 'Mouse sprites', 'Catpaw Mouse icon.png')).convert_alpha()
         self.custom_cursor = pygame.transform.scale(self.custom_cursor, self.settings.get_mouse_size())
+        
+        #temporaire
+        self.update = PasDeVirus.Update()
 
         self.active = Menu()
 
@@ -41,10 +44,13 @@ class Game:
             
             self.handle_output(output)
             
+
+            #temporaire
+            # self.update.run()
+
             # Cursor custom
             mouse_x, mouse_y = pygame.mouse.get_pos()
             self.screen.blit(self.custom_cursor, (mouse_x, mouse_y))
-
             pygame.display.flip()
             clock.tick(self.settings.get_FPS())
 
