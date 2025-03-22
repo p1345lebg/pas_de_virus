@@ -2,14 +2,14 @@ import pygame
 import os
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,int], action : list = ['none'], texture : str = 'default/button', texture_hoover : str = None, text : str = ''):
+    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,tuple[int,int]], action : list = ['none'], texture : str = 'default/button', texture_hoover : str = None, text : str = ''):
         """
         bouton
 
         Args:
             screen (pygame.Surface) : surface sur laquelle est dessiné le bouton
             position (tuple[int,int,str]) : poistion du bouton (en pourcentage), la troisieme valeur determine à partir d'où la position est calculée
-            size (tuple[int,int]) : taille du bouton (en pourcentage par rapport a la fenetre)
+            size (tuple[tuple[int,int],int]) : taille du bouton, le premier tuple contient la largeur en pourcentage par rapport a la fenetre et le deuxieme le ratio
             action (list) : liste contenant les action a effectuer par le bouton
             texture (str) : chemin vers la texture a partir du dossier "assets"
             texture_hoover (str) : chemin vers la texture a partir du dossier "assets"
@@ -42,9 +42,9 @@ class Button(pygame.sprite.Sprite):
         screenSize_x = self.screen.get_width()
         screenSize_y = self.screen.get_height()
 
-        width = self.SIZE[0]
-        height = self.SIZE[1]
-        self.size = (screenSize_x*width/100,screenSize_y*height/100)
+        width = screenSize_x//self.SIZE[0]*100
+        height = screenSize_x//self.SIZE[1][0]*self.SIZE[1][1]
+        self.size = (width, height)
 
         x = self.POSITION[0]
         y = self.POSITION[1]
@@ -85,4 +85,4 @@ class Button(pygame.sprite.Sprite):
             self.screen.blit(text_surface, text_rect)
 
     def handle_click():
-        pass
+        mousePos = pygame.mouse.get_pos()
