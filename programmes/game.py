@@ -18,6 +18,7 @@ class Game:
         pygame.mouse.set_visible(False)
         PATH_ASSETS_CUTE = path.join(path.dirname(__file__),'..','assets','SproutLand')
         self.custom_cursor = pygame.image.load(path.join(PATH_ASSETS_CUTE, 'Sprite sheets', 'Mouse sprites', 'Catpaw pointing Mouse icon.png')).convert_alpha()
+        self.custom_cursor = pygame.transform.scale(self.custom_cursor, (self.settings.get_mouse_size()))
 
         self.active = Menu()
 
