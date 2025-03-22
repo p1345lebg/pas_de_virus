@@ -2,55 +2,6 @@ import pygame
 import os
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self,
-                 position : tuple[int,int,str] = (0,0,'top-left'),
-                 size : tuple[int,int] = (10,10), 
-                 action : list = ['none'],
-                 *groups, 
-                 texture : str = 'default/button.png', 
-                 texture_hoover : str = None,
-                 text : str = ''):
-        super().__init__(*groups)
-
-
-        self.size = size
-
-        self.PATH_texture = os.path.join(os.path.dirname(__file__),'..','..','assets',texture)
-        self.texture = pygame.transform.scale(pygame.image.load(self.PATH_texture).convert_alpha(),size)
-        if texture_hoover:
-            self.PATH_texture_hoover = os.path.join(os.path.dirname(__file__),'..','..','assets',texture_hoover)
-            self.texture = pygame.transform.scale(pygame.image.load(self.PATH_texture_hoover).convert_alpha(),size)
-        else:
-            self.texture_hoover = None
-
-        font = pygame.font.Font(os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf'))
-        self.text = font.render(text, True, (123,123,123))
-        
-
-        self.hitbox : pygame.Rect = self.texture.get_rect()
-
-        self.position = position
-
-    def update(self,screen : pygame.Surface, click : bool = False):
-        cursor_pos = pygame.mouse.get_pos()
-        texture : pygame.Surface = pygame.Surface(self.size)
-
-        if self.texture_hoover and self.hitbox.collidepoint(cursor_pos):
-            texture.blit(self.texture_hoover, (0,0))
-        else:
-            texture.blit(self.texture,(0,0))
-
-        texture.blit(self.text,self.text.get_rect(center=self.hitbox.center))
-
-        screenSize = screen.get_size()
-        match self.position[2]:
-            case 'top-left':
-                screen.blit(texture,self.position[:2])
-
-        screen.blit(texture,(0,0))
-
-
-class Button(pygame.sprite.Sprite):
     def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,int], action : list = ['none'], texture : str = 'default/button', texture_hoover : str = None, text : str = ''):
         """
         bouton
@@ -82,15 +33,56 @@ class Button(pygame.sprite.Sprite):
         self.size : tuple[int,int]
         self.texture : pygame.Surface
         self.textureHoover : pygame.Surface
+        self.hitbox : pygame.Rect
+
+        self.update_screen(screen)
 
     def update_screen(self, screen):
         self.screen = screen
         screenSize_x = self.screen.get_width()
         screenSize_y = self.screen.get_height()
+
+        width = self.SIZE[0]
+        height = self.SIZE[1]
+        self.size = (screenSize_x*width/100,screenSize_y*height/100)
+
         x = self.POSITION[0]
         y = self.POSITION[1]
         match self.POSITION[2]:
             case 'top-left':
-                self.position = (screenSize_x*x/100)
+                self.position = (screenSize_x*x/100, screenSize_y*y/100)
+            case 'top' : 
+                self.position = (screenSize_x*x/100-self.size[0]//2, screenSize_y*y/100)
+            case 'top-right':
+                self.position = (screenSize_x*x/100-self.size[0], screenSize_y*y/100)
+            case 'left' :
+                self.position = (screenSize_x*x/100, screenSize_y*y/100-self.size[1]//2)
+            case 'middle' : 
+                self.position = (screenSize_x*x/100-self.size[0]//2, screenSize_y*y/100-self.size[1]//2)
+            case 'right' : 
+                self.position = (screenSize_x*x/100-self.size[0], screenSize_y*y/100-self.size[1]//2)
+            case 'bottom-left' : 
+                self.position = (screenSize_x*x/100, screenSize_y*y/100-self.size[1])
+            case 'bottom' :
+                self.position = (screenSize_x*x/100-self.size[0]//2, screenSize_y*y/100-self.size[1])
+            case 'bottom-right' :
+                self.position = (screenSize_x*x/100-self.size[0], screenSize_y*y/100-self.size[1])
 
+        self.texture = pygame.transform.scale(self.TEXTURE, self.size)
+        self.textureHoover = pygame.transform.scale(self.TEXTURE_HOOVER, self.size)
+        self.hitbox = self.texture.get_rect(topleft=(x, y))
 
+    def draw(self):
+        cursor_pos = pygame.mouse.get_pos()
+        if self.hitbox.collidepoint(cursor_pos):
+            self.screen.blit(self.textureHoover, self.position)
+        else:
+            self.screen.blit(self.texture, self.position)
+
+        if self.TEXT:
+            text_surface = self.font.render(self.TEXT, True, (0, 0, 0))
+            text_rect = text_surface.get_rect(center=self.hitbox.center)
+            self.screen.blit(text_surface, text_rect)
+
+    def handle_click():
+        pass
