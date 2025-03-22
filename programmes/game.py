@@ -9,7 +9,7 @@ class Game:
     def __init__(self) -> None:
         pygame.init()
         pygame.font.init()
-        PATH_ASSETS = path.join(path.dirname(__file__),'assets','game')
+        PATH_ASSETS = path.join(path.dirname(__file__),'..','assets','game')
         self.settings : Settings = Settings()
         self.screen = pygame.display.set_mode(self.settings.get_window_size())
         pygame.display.set_caption('mon jeu')
