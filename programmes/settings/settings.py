@@ -37,7 +37,7 @@ class Settings:
                 self.saved = False
 
             case 'mouseSize':
-                self.settings['mouseSize'] = input[1] if type(input[1]) == int else 60
+                self.settings['mouseSize'] = input[1] if type(input[1]) == tuple else (40,40)
                 self.saved = False
 
     def get_window_size(self) -> tuple[int,int]:
