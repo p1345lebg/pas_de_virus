@@ -20,7 +20,7 @@ class Button(pygame.sprite.Sprite):
         PATH_TEXTURE = os.path.join(os.path.dirname(__file__),'..','..','assets',texture)
         PATH_TEXTURE_HOOVER = os.path.join(os.path.dirname(__file__),'..','..','assets',texture_hoover) if texture_hoover else None
         self.PATH_FONT = os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf')
-        self.font : pygame.font.Font = pygame.font.Font(os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf'), 50)
+        self.font : pygame.font.Font
 
         self.screen : pygame.Surface
         self.POSITION : tuple[int,int,str] = position
@@ -50,8 +50,6 @@ class Button(pygame.sprite.Sprite):
         height = width//self.SIZE[1][0]*self.SIZE[1][1]
         self.size = (width, height)
 
-        self.font = pygame.font.Font(self.PATH_FONT, (60//100*height)//self.SIZE[1][1]*self.SIZE[1][0])
-
         x = self.POSITION[0]
         y = self.POSITION[1]
         match self.POSITION[2]:
@@ -78,6 +76,16 @@ class Button(pygame.sprite.Sprite):
         if self.TEXTURE_HOOVER:
             self.textureHoover = pygame.transform.scale(self.TEXTURE_HOOVER, self.size)
         self.hitbox = self.texture.get_rect(topleft=(x, y))
+
+        font_size = self.hitbox.height  # Commence par la hauteur du bouton
+        while font_size > 0:
+            font = pygame.font.SysFont(self.PATH_FONT, font_size)
+            text_surface = font.render(self.TEXT, True, (0,0,0))
+            if text_surface.get_width() <= self.hitbox.width and text_surface.get_height() <= self.hitbox.height:
+                break  # La taille de police convient
+            font_size -= 1
+        self.font = font
+        self.text_surface = text_surface
 
     def draw(self):
         cursor_pos = pygame.mouse.get_pos()
