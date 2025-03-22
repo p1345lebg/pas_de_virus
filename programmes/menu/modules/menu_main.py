@@ -4,7 +4,7 @@ from programmes.components import Button
 class MenuMain:
     def __init__(self) -> None:
         self.buttons = {
-            Button(size=(192,64),action=['settings','save'])
+            Button(size=(192,64),action=['settings','save'], text='bonjour')
         }
 
 

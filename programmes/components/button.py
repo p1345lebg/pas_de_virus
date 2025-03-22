@@ -24,10 +24,10 @@ class Button(pygame.sprite.Sprite):
             self.texture_hoover = None
 
         font = pygame.font.Font(os.path.join(os.path.dirname(__file__),'..','..','assets','SproutLand','fonts','pixelFont-7-8x14-sproutLands.ttf'))
-        self.text = font.render(text, True, (255,255,255))
+        self.text = font.render(text, True, (123,123,123))
         
 
-        self.hitbox = self.texture.get_rect()
+        self.hitbox : pygame.Rect = self.texture.get_rect()
         
 
     def draw(self,screen : pygame.Surface):
@@ -39,7 +39,6 @@ class Button(pygame.sprite.Sprite):
         else:
             texture.blit(self.texture,(0,0))
 
-        text_rect = self.text.get_rect(center=self.hitbox.center)
-        texture.blit(self.text, self.text.get_rect())
-        screen.blit(texture,0,0,0)
+        texture.blit(self.text,self.text.get_rect(center=self.hitbox.center))
+        screen.blit(texture,(0,0))
 
