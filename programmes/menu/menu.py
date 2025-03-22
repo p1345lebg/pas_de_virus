@@ -1,8 +1,8 @@
 from .modules import MenuMain
 
 class Menu:
-    def __init__(self):
-        self.active = MenuMain()
+    def __init__(self, screen):
+        self.active = MenuMain(screen)
 
     def update(self, events, screen) -> list:
         return self.active.update(events, screen)
