@@ -14,6 +14,7 @@ class Draw:
         # On garde une référence aux dimensions originales
         self.height = self.original_height
         self.width = self.original_width
+        self.groundPos = []
         self.load_assets_pieces()
         self.load_assets_background()
 
@@ -125,16 +126,18 @@ class Draw:
 
         screen.blit(self.premium_lily_pad, (-1 * self.widthOffset + self.beginX3, -1 * self.heightOffset + self.beginY4))
         for i in range(len(ground)):
+            self.tempGroundPos = []
             for y in range(len(ground[i])):
                 if len(ground[i]) % 4 != 0:
                     self.draw_element(screen, ground[i][y], (y, i), (self.beginX3, self.beginY3))
                 else:
                     self.draw_element(screen, ground[i][y], (y, i), (self.beginX4, self.beginY4))
+            self.groundPos.append(self.tempGroundPos)
     
     def draw_element(self, screen, element, position, begin):
         if element == "empty":
             screen.blit(self.water_lily[self.water_lily_random[position[1]][position[0]]], (position[0] * (self.widthOffset) + begin[0], position[1] * (self.heightOffset) + begin[1]))
-    
+            self.tempGroundPos.append((position[0] * (self.widthOffset) + begin[0], position[1] * (self.heightOffset) + begin[1]))
     def get_sprite(self, sprite_sheet, x, y, widht, height):
         sprite = pygame.Surface((widht, widht), pygame.SRCALPHA).convert_alpha()
         sprite.blit(sprite_sheet, (0, 0), (x * widht, y * height, widht, height))
@@ -191,3 +194,6 @@ class Draw:
                 #Coin bas droite
                 if (x == self.endWater[0]-1 and y == self.endWater[1]-1):
                     screen.blit(self.cornerGrass[3], (x*self.startTileSize, y*self.startTileSize))
+    
+    def get_groundPos(self):
+        return self.groundPos

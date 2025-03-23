@@ -23,6 +23,7 @@ class Game:
 
         self.draw.draw_background(screen)
         self.draw.draw_pieces(self.ground, screen)
+        #self.draw.get_groundPos()
 
     def manageEvents(self, events):
         pass
