@@ -39,10 +39,9 @@ class Game:
                     running = False
 
             output = self.active.update(events, self.screen)
-            if not output:
-                output = ['none']
-            
-            self.handle_output(output)
+            if output:
+                print(output)
+                self.handle_output(output)
             
             # Cursor custom
             mouse_x, mouse_y = pygame.mouse.get_pos()
@@ -63,10 +62,10 @@ class Game:
 
             case 'menu':
                 if type(self.active) != Menu:
-                    self.active = Menu()
+                    self.active = Menu(self.screen)
                 self.active.handle_input(output[1:])
         
             case 'pasDeVirus':
                 if type(self.active) != PasDeVirus:
-                    self.active = Menu()
+                    self.active = PasDeVirus(self.screen)
                 self.active.handle_input(output[1:])

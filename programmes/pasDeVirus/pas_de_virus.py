@@ -1,27 +1,24 @@
-from .modules import Update
+from .modules import Game, Menu
 
 from programmes.components import Button
 
 class PasDeVirus:
     def __init__(self, screen)->None:
-    #     self.screen = screen
-    #     self.active = Update(self.screen)
-
-    # def update(self, events) -> list:
-    #     self.handle_output(self.active.run(events, self.screen))
-    #     output = self.active.run(events, self.screen)
-    #     if output:
-    #         return self.handle_output(output)
-
-        self.active = Update(screen)
+        self.screen = screen
+        self.active = Game(self.screen)
 
     def update(self, events, screen) -> list:
-        self.handle_output(self.active.run(events, screen))
+        output = self.active.run(events, self.screen)
+        if output:
+            return self.handle_output(output)
 
     def handle_input(self, input : list):
         match input[0]:
             case 'menu':
-                self.active = Update()
+                self.active = Menu(self.screen)
+
+            case 'game':
+                self.active = Game()
 
     def handle_output(self, output):
         if output:

@@ -5,7 +5,7 @@ import random
 
 class Draw:
     def __init__(self, screen) -> None:
-        self.screen = screen
+        self.screen : pygame.Surface = screen
         self.startTime = pygame.time.get_ticks()
         self.speedAnimation = 1000
         self.current_frame = 0
@@ -79,6 +79,7 @@ class Draw:
             self.startTileSize -= 1
             if self.original_height % self.startTileSize == 0 and self.original_width % self.startTileSize == 0:
                 searchSize = False
+        #self.startTileSize = self.screen.get_width()//100
 
         self.sprite_anim_water = []
         for water in range(4):
