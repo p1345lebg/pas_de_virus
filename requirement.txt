@@ -1,0 +1,6 @@
+Prérequis :
+----------
+éléments a installer:
+    -python 3.x
+    -pygame 2.6.1
+
