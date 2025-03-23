@@ -33,9 +33,21 @@ class Draw:
         
         #Calcule de la taille des elem basé sur les dimensions logique
         smaller_size = min(self.width/19.2, self.height/10.8)
-        self.water_lily = pygame.transform.scale(self.get_sprite(self.sprite_sheet, 7, 4, 16, 16), (smaller_size, smaller_size))
-        self.sizePiece = self.water_lily.get_size()
+        self.water_lily = []
+
+        self.water_lily.append(pygame.transform.scale(self.get_sprite(self.sprite_sheet, 7, 4, 16, 16), (smaller_size, smaller_size)))
+        self.water_lily.append(pygame.transform.scale(self.get_sprite(self.sprite_sheet, 8, 4, 16, 16), (smaller_size, smaller_size)))
         
+        self.sizePiece = self.water_lily[0].get_size()
+
+        self.water_lily_random = []
+        altern_size = (4,3)
+        for i in range(7):
+            pos = []
+            for y in range(altern_size[i%2]):
+                    pos.append(1 if random.randint(0,100) <= 15 else 0)
+            self.water_lily_random.append(pos)
+
         self.widthOffset = self.width/12
         self.heightOffset = self.height/12
 
@@ -57,7 +69,7 @@ class Draw:
 
     def load_assets_background(self):
         PATH_ASSETS_TILE = path.join(path.dirname(__file__),'..','..', '..','assets','SproutTiles')
-        self.sprite_sheetWater = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'water.png')).convert_alpha()
+        self.sprite_sheetWater = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'Water.png')).convert_alpha()
         self.sprite_sheetGrass = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'Grass.png')).convert_alpha()
 
         searchSize = True
@@ -109,7 +121,7 @@ class Draw:
         
     def draw_pieces(self, ground, screen):
 
-        screen.blit(self.water_lily, (-1 * self.widthOffset + self.beginX3, -1 * self.heightOffset + self.beginY4))
+        screen.blit(self.water_lily[self.water_lily_random[0][1]], (-1 * self.widthOffset + self.beginX3, -1 * self.heightOffset + self.beginY4))
         for i in range(len(ground)):
             for y in range(len(ground[i])):
                 if len(ground[i]) % 4 != 0:
@@ -119,7 +131,7 @@ class Draw:
     
     def draw_element(self, screen, element, position, begin):
         if element == "empty":
-            screen.blit(self.water_lily, (position[0] * (self.widthOffset) + begin[0], position[1] * (self.heightOffset) + begin[1]))
+            screen.blit(self.water_lily[self.water_lily_random[position[1]][position[0]]], (position[0] * (self.widthOffset) + begin[0], position[1] * (self.heightOffset) + begin[1]))
     
     def get_sprite(self, sprite_sheet, x, y, widht, height):
         sprite = pygame.Surface((widht, widht), pygame.SRCALPHA).convert_alpha()
@@ -138,10 +150,19 @@ class Draw:
 
         for x in range(self.beginWater[0], self.endWater[0]):
             for y in range(self.beginWater[1], self.endWater[1]):
+                block_x = x // 2
+                block_y = y // 2
+
+                # Décalage d'animation basé sur la position du bloc
+                block_offset = (block_x + block_y) % 4
+
+                # Frame calculée avec décalage par bloc
+                frame = (self.current_frame + block_offset) % 4
+                
                 if y%2 != 0:
-                    screen.blit(self.sprite_anim_water[self.current_frame][2+x%2], (x*self.startTileSize,y*self.startTileSize))
+                    screen.blit(self.sprite_anim_water[frame][2+x%2], (x*self.startTileSize,y*self.startTileSize))
                 else:
-                    screen.blit(self.sprite_anim_water[self.current_frame][x%2], (x*self.startTileSize,y*self.startTileSize))
+                    screen.blit(self.sprite_anim_water[frame][x%2], (x*self.startTileSize,y*self.startTileSize))
 
         #beginWater[0] = x / endwater[0] = endx
         #beginWater[1] = y / endwater[1] = endy
