@@ -57,7 +57,7 @@ class Draw:
 
     def load_assets_background(self):
         PATH_ASSETS_TILE = path.join(path.dirname(__file__),'..','..', '..','assets','SproutTiles')
-        self.sprite_sheetWater = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'water.png')).convert_alpha()
+        self.sprite_sheetWater = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'Water.png')).convert_alpha()
         self.sprite_sheetGrass = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'Grass.png')).convert_alpha()
 
         searchSize = True

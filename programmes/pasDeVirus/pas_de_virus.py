@@ -3,7 +3,7 @@ from .modules import Update
 from programmes.components import Button
 
 class PasDeVirus:
-    def __init__(self, screen):
+    def __init__(self, screen)->None:
     #     self.screen = screen
     #     self.active = Update(self.screen)
 
