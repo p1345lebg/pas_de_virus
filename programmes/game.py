@@ -1,5 +1,5 @@
 import pygame
-from os import path
+import os
 
 from programmes.settings import Settings
 from programmes.menu import Menu
@@ -10,15 +10,15 @@ class Game:
     def __init__(self) -> None:
         pygame.init()
         pygame.font.init()
-        PATH_ASSETS = path.join(path.dirname(__file__),'..','assets','game')
+        PATH_ASSETS = os.sep.join(['assets'])
         self.settings : Settings = Settings()
         self.screen = pygame.display.set_mode(self.settings.get_window_size())
         pygame.display.set_caption('mon jeu')
-        pygame.display.set_icon(pygame.image.load(path.join(PATH_ASSETS,'icone.png')).convert_alpha())
+        pygame.display.set_icon(pygame.image.load(os.sep.join([PATH_ASSETS,'icone.png'])).convert_alpha())
 
         pygame.mouse.set_visible(False)
-        PATH_ASSETS_CUTE = path.join(path.dirname(__file__),'..','assets','SproutLand')
-        self.custom_cursor = pygame.image.load(path.join(PATH_ASSETS_CUTE, 'Sprite sheets', 'Mouse sprites', 'Catpaw Mouse icon.png')).convert_alpha()
+        PATH_ASSETS_CUTE = os.sep.join(['assets','SproutLand'])
+        self.custom_cursor = pygame.image.load(os.sep.join([PATH_ASSETS_CUTE, 'Sprite sheets', 'Mouse sprites', 'Catpaw Mouse icon.png'])).convert_alpha()
         self.custom_cursor = pygame.transform.scale(self.custom_cursor, self.settings.get_mouse_size())
         
         #temporaire

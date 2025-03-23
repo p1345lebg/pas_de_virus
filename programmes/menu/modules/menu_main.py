@@ -10,7 +10,7 @@ class MenuMain:
         self.backgroundTileSheet = pygame.image.load(PATH_BACKGROUD_TILESHEET)
         self.background = BackgroundTileSheet(self.screen, self.backgroundTileSheet)
         self.buttons = {
-            Button(screen,(0,0,'top-left'), (10,(1,1)), ['pasDeVirus', 'menu'], texture_hoover='SproutTiles/Objects/Free_Chicken_House.png', text='BONJOUR')
+            Button(screen,(0,0,'top-left'), (10,(1,1)), ['pasDeVirus', 'menu'], texture_hoover=os.sep.join(['assets','SproutTiles','Objects','Free_Chicken_House.png']), text='BONJOUR', textColor=(255, 255, 0))
         }
 
 

@@ -7,6 +7,7 @@ class PlayGround:
         self.screen : pygame.Surface
         PATH_WATER = os.sep.join(['assets','SproutTiles','Tilesets','Water.png'])
         PATH_GRASS = os.sep.join(['assets','SproutTiles','Tilesets','Grass.png'])
+        PATH_LILYPAD = os.sep.join(['assets', 'SproutLand'])
 
         self.WATER : list[pygame.Surface] = []
         water = pygame.image.load(PATH_WATER)
@@ -30,8 +31,6 @@ class PlayGround:
         self.animationCounter = 0
         self.animationSpeed = Settings().get_FPS()
         self.waterFrame = 0
-
-
 
     def update_screen(self, screen: pygame.Surface):
         self.screen : pygame.Surface = screen
@@ -76,6 +75,12 @@ class PlayGround:
         
         self.playgroundRect = self.border.get_rect(center=(screen_x // 2, screen_y // 2))
 
+        self.lilypadSurface : pygame.surface = pygame.Surface((self.playgroundSize,self.playgroundSize), pygame.SRCALPHA)
+        self.border.fill((0,0,0,0))
+
+    def get_position():
+        pass
+
     def draw(self):
         self.animationCounter += 1
         playground :pygame.Surface = pygame.Surface((self.playgroundSize,self.playgroundSize))
@@ -94,7 +99,7 @@ class PlayGround:
         self.screen.blit(playground,self.playgroundRect)
 
 
-        
+    
 
         
         

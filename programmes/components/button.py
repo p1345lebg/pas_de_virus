@@ -2,7 +2,7 @@ import pygame
 import os
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,tuple[int,int]], action : list = ['none'], texture : str = 'default/button.png', texture_hoover : str = None, text : str = ''):
+    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,tuple[int,int]], action : list = ['none'], texture : str = os.sep.join(['assets','buttons','default.png']), texture_hoover : str = None, text : str = '', textColor : tuple = (0,0,0)):
         """
         bouton
 
@@ -11,15 +11,16 @@ class Button(pygame.sprite.Sprite):
             position (tuple[int,int,str]) : poistion du bouton (en pourcentage), la troisieme valeur determine à partir de la position est calculée
             size (tuple[tuple[int,int],int]) : taille du bouton, le premier tuple contient la largeur en pourcentage par rapport a la fenetre et le deuxieme le ratio
             action (list) : liste contenant les action a effectuer par le bouton
-            texture (str) : chemin vers la texture a partir du dossier "assets"
-            texture_hoover (str) : chemin vers la texture a partir du dossier "assets"
+            texture (str) : chemin vers la texture a partir du dossier "assets", a renseigner de preference avec ```os.sep.join(['chemin','vers','la','texture.png'])```
+            texture_hoover (str) : chemin vers la texture a partir du dossier "assets", a renseigner de preference avec ```os.sep.join(['chemin','vers','la','texture.png'])```
             texte (str) : texte affiché sur le bouton
+            textColor (tuple) : couleur du texte à afficher en format rgb
         """
         super().__init__()
 
-        PATH_TEXTURE = os.path.join(os.path.dirname(__file__),'..','..','assets',texture)
-        PATH_TEXTURE_HOOVER = os.path.join(os.path.dirname(__file__),'..','..','assets',texture_hoover) if texture_hoover else None
-        self.PATH_FONT = os.path.join(os.path.dirname(__file__),'..','..','assets','game','Jersey10-Regular.ttf')
+        PATH_TEXTURE = texture
+        PATH_TEXTURE_HOOVER = texture_hoover if texture_hoover else None
+        self.PATH_FONT = os.sep.join(['assets','fonts','Jersey10-Regular.ttf'])
         self.font : pygame.font.Font
 
         self.screen : pygame.Surface

@@ -1,11 +1,14 @@
-from .modules import Game, Menu
+import json
+import os
 
 from programmes.components import Button
+
+from .modules import Game, Menu
 
 class PasDeVirus:
     def __init__(self, screen)->None:
         self.screen = screen
-        self.active = Game(self.screen)
+        self.active = Menu(self.screen)
 
     def update(self, events) -> list:
         output = self.active.run(events)
@@ -18,7 +21,8 @@ class PasDeVirus:
                 self.active = Menu(self.screen)
 
             case 'game':
-                self.active = Game()
+                self.handle_game(input[1:])
+                self.active = Game(self.screen)
 
     def handle_output(self, output):
         if output:
@@ -26,3 +30,10 @@ class PasDeVirus:
                 self.handle_input(output[1:])
             else:
                 return output
+            
+    def handle_game(self, input):
+        with open(os.sep.join(['data','pasDeVirus','levels']),'r') as file:
+            levels = json.load(file)
+
+        if input[0] in levels and input[1] in levels[input[0]]:
+            self.active = Game(self.screen, levels[input[0]]['disposition'])

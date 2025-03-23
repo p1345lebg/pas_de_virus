@@ -1,0 +1,13 @@
+{
+    "menu" : {
+        "main_menu" : null
+    },
+    "pasDeVirus" : {
+        "menu" : null,
+        "game" : {
+            "difficultée (voir le fichier data/pasDeVirus/levels.json)" : [
+                "nom du niveau"
+            ]
+        }
+    }
+}
