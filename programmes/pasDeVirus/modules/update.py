@@ -1,7 +1,7 @@
 import pygame
 
 from programmes.settings import Settings
-from programmes.pasDeVirus.modules import drawPieces
+from programmes.pasDeVirus.modules import draw
 
 class Update:
     def __init__(self, screen):
@@ -15,13 +15,14 @@ class Update:
                             ["empty", "empty", "empty"],
                         ["empty", "empty", "empty", "empty"]]
         self.screen = screen
-        self.drawPieces = drawPieces.DrawPieces(self.screen)
+        self.draw = draw.Draw(self.screen)
 
     def run(self, events, screen):
         
         self.manageEvents(events)
 
-        self.drawPieces.draw(self.ground, screen)
+        self.draw.draw_background(screen)
+        self.draw.draw_pieces(self.ground, screen)
 
     def manageEvents(self, events):
         pass

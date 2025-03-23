@@ -44,10 +44,6 @@ class Game:
             
             self.handle_output(output)
             
-
-            #temporaire
-            # self.update.run()
-
             # Cursor custom
             mouse_x, mouse_y = pygame.mouse.get_pos()
             self.screen.blit(self.custom_cursor, (mouse_x, mouse_y))
