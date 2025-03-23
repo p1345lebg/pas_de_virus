@@ -7,8 +7,8 @@ class PasDeVirus:
         self.screen = screen
         self.active = Game(self.screen)
 
-    def update(self, events, screen) -> list:
-        output = self.active.run(events, self.screen)
+    def update(self, events) -> list:
+        output = self.active.run(events)
         if output:
             return self.handle_output(output)
 

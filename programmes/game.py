@@ -38,7 +38,7 @@ class Game:
                 if event.type == pygame.QUIT:
                     running = False
 
-            output = self.active.update(events, self.screen)
+            output = self.active.update(events)
             if output:
                 print(output)
                 self.handle_output(output)

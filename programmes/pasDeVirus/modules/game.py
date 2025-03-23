@@ -1,12 +1,13 @@
 import pygame
+import os
 
-from programmes.settings import Settings
+from programmes.components import BackgroundTileSheet
 from .items import Draw
 
 class Game:
     def __init__(self, screen):
-        pygame.init()
-        self.settings : Settings = Settings()
+        tileSheet = pygame.image.load(os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
+        self.background = BackgroundTileSheet(screen, tileSheet)
         self.ground = [["empty", "empty", "empty", "empty"], 
                             ["empty", "empty", "empty"], 
                         ["empty", "empty", "empty", "empty"], 
@@ -17,13 +18,12 @@ class Game:
         self.screen = screen
         self.draw = Draw(self.screen)
 
-    def run(self, events, screen):
+    def run(self, events):
         
         self.manageEvents(events)
 
-        self.draw.draw_background(screen)
-        self.draw.draw_pieces(self.ground, screen)
-        #self.draw.get_groundPos()
+        self.draw.draw_pieces(self.ground, self.screen)
+        self.background.draw()
 
     def manageEvents(self, events):
         pass
