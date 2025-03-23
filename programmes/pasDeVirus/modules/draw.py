@@ -38,6 +38,7 @@ class Draw:
         self.water_lily.append(pygame.transform.scale(self.get_sprite(self.sprite_sheet, 7, 4, 16, 16), (smaller_size, smaller_size)))
         self.water_lily.append(pygame.transform.scale(self.get_sprite(self.sprite_sheet, 8, 4, 16, 16), (smaller_size, smaller_size)))
         
+        self.premium_lily_pad =pygame.transform.scale(pygame.image.load(path.join(PATH_ASSETS_SHEET, 'Objects', 'water_lily_premium.png')).convert_alpha(), (smaller_size, smaller_size))
         self.sizePiece = self.water_lily[0].get_size()
 
         self.water_lily_random = []
@@ -121,7 +122,7 @@ class Draw:
         
     def draw_pieces(self, ground, screen):
 
-        screen.blit(self.water_lily[self.water_lily_random[0][1]], (-1 * self.widthOffset + self.beginX3, -1 * self.heightOffset + self.beginY4))
+        screen.blit(self.premium_lily_pad, (-1 * self.widthOffset + self.beginX3, -1 * self.heightOffset + self.beginY4))
         for i in range(len(ground)):
             for y in range(len(ground[i])):
                 if len(ground[i]) % 4 != 0:
@@ -158,7 +159,7 @@ class Draw:
 
                 # Frame calculée avec décalage par bloc
                 frame = (self.current_frame + block_offset) % 4
-                
+
                 if y%2 != 0:
                     screen.blit(self.sprite_anim_water[frame][2+x%2], (x*self.startTileSize,y*self.startTileSize))
                 else:
