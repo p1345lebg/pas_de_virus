@@ -4,14 +4,19 @@ from programmes.components import Button
 
 class PasDeVirus:
     def __init__(self, screen):
-        self.screen = screen
-        self.active = Update(self.screen)
+    #     self.screen = screen
+    #     self.active = Update(self.screen)
 
-    def update(self, events) -> list:
-        self.handle_output(self.active.run(self.screen))
-        output = self.active.run(events, self.screen)
-        if output:
-            return self.handle_output(output)
+    # def update(self, events) -> list:
+    #     self.handle_output(self.active.run(events, self.screen))
+    #     output = self.active.run(events, self.screen)
+    #     if output:
+    #         return self.handle_output(output)
+
+        self.active = Update(screen)
+
+    def update(self, events, screen) -> list:
+        self.handle_output(self.active.run(events, screen))
 
     def handle_input(self, input : list):
         match input[0]:

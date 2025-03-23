@@ -80,7 +80,14 @@ class Draw:
             for y in range(5, 7):
                 self.grass.append(pygame.transform.scale(self.get_sprite(self.sprite_sheetGrass, x, y, 16, 16), (self.startTileSize, self.startTileSize)))
 
-        marginWidth10 = self.total_width4 / 3
+        self.borderGrass, self.cornerGrass = [], []
+        posCornerGrassSprite = ((5,1),(6,1),(5,2),(6,2))
+        posBroderGrassSpirte = ((2,1),(1,0),(0,1),(1,2))
+        for x in range(4):
+            self.borderGrass.append(pygame.transform.scale(self.get_sprite(self.sprite_sheetGrass, posBroderGrassSpirte[x][0], posBroderGrassSpirte[x][1], 16, 16), (self.startTileSize, self.startTileSize)))
+            self.cornerGrass.append(pygame.transform.scale(self.get_sprite(self.sprite_sheetGrass, posCornerGrassSprite[x][0], posCornerGrassSprite[x][1],16,16), (self.startTileSize, self.startTileSize)))
+
+        marginWidth10 = self.total_width4 / 3.5
         marginHeight10 = self.total_height / 5
 
         poxXwater = self.beginX4 - marginWidth10
@@ -135,3 +142,29 @@ class Draw:
                     screen.blit(self.sprite_anim_water[self.current_frame][2+x%2], (x*self.startTileSize,y*self.startTileSize))
                 else:
                     screen.blit(self.sprite_anim_water[self.current_frame][x%2], (x*self.startTileSize,y*self.startTileSize))
+
+        #beginWater[0] = x / endwater[0] = endx
+        #beginWater[1] = y / endwater[1] = endy
+        for x in range(self.beginWater[0], self.endWater[0] + 1):
+            for y in range(self.beginWater[1], self.endWater[1] + 1):
+                if (x == self.beginWater[0] and y < self.endWater[1]):
+                    screen.blit(self.borderGrass[0], (x*self.startTileSize, y*self.startTileSize))
+                if (y == self.beginWater[1] and x < self.endWater[0]):
+                    screen.blit(self.borderGrass[3], (x*self.startTileSize, y*self.startTileSize))
+                if (x == self.endWater[0] - 1 and y < self.endWater[1]):
+                    screen.blit(self.borderGrass[2], (x*self.startTileSize, y*self.startTileSize))
+                if (y == self.endWater[1] - 1 and x < self.endWater[0]):
+                    screen.blit(self.borderGrass[1], (x*self.startTileSize, y*self.startTileSize))
+
+                #Coin bas gauche
+                if (x == self.beginWater[0] and y == self.endWater[1]-1):
+                    screen.blit(self.cornerGrass[2], (x*self.startTileSize, y*self.startTileSize))
+                #Coin haut droite
+                if (y == self.beginWater[1] and x == self.endWater[0]-1):
+                    screen.blit(self.cornerGrass[1], (x*self.startTileSize, y*self.startTileSize))
+                #Coind haut gauche
+                if (y == self.beginWater[1] and x == self.beginWater[0]):
+                    screen.blit(self.cornerGrass[0], (x*self.startTileSize, y*self.startTileSize))
+                #Coin bas droite
+                if (x == self.endWater[0]-1 and y == self.endWater[1]-1):
+                    screen.blit(self.cornerGrass[3], (x*self.startTileSize, y*self.startTileSize))
