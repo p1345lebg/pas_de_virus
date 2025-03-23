@@ -18,7 +18,7 @@ class Draw:
         self.load_assets_background()
 
     def load_assets_pieces(self):
-        PATH_ASSETS_SHEET = path.join(path.dirname(__file__),'..','..', '..','assets','SproutTiles')
+        PATH_ASSETS_SHEET = path.join(path.dirname(__file__),'..','..', '..','..','assets','SproutTiles')
         self.sprite_sheet = pygame.image.load(path.join(PATH_ASSETS_SHEET, 'Objects', 'Basic_Grass_Biom_things.png')).convert_alpha()
 
         # maintenir le ratio de 16/9 pour les calucls
@@ -69,7 +69,7 @@ class Draw:
         self.beginY4 = self.beginY3  # Même position Y pour toutes les lignes
 
     def load_assets_background(self):
-        PATH_ASSETS_TILE = path.join(path.dirname(__file__),'..','..', '..','assets','SproutTiles')
+        PATH_ASSETS_TILE = path.join(path.dirname(__file__),'..','..', '..','..','assets','SproutTiles')
         self.sprite_sheetWater = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'Water.png')).convert_alpha()
         self.sprite_sheetGrass = pygame.image.load(path.join(PATH_ASSETS_TILE, 'Tilesets', 'Grass.png')).convert_alpha()
 

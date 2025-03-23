@@ -1,7 +1,7 @@
 import pygame
 
 from programmes.settings import Settings
-from programmes.pasDeVirus.modules import draw
+from .items import Draw
 
 class Game:
     def __init__(self, screen):
@@ -15,7 +15,7 @@ class Game:
                             ["empty", "empty", "empty"],
                         ["empty", "empty", "empty", "empty"]]
         self.screen = screen
-        self.draw = draw.Draw(self.screen)
+        self.draw = Draw(self.screen)
 
     def run(self, events, screen):
         
