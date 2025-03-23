@@ -1,2 +1,2 @@
-from .menu_global import *
+from .settings import MenuSettings
 from .menu_main import MenuMain

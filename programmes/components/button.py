@@ -8,7 +8,7 @@ class Button(pygame.sprite.Sprite):
 
         Args:
             screen (pygame.Surface) : surface sur laquelle est dessiné le bouton
-            position (tuple[int,int,str]) : poistion du bouton (en pourcentage), la troisieme valeur determine à partir de la position est calculée
+            position (tuple[int,int,str]) : poistion du bouton (en pourcentage), la troisieme valeur determine à partir d'où la position est calculée \n```top-left top top-right left center right bottom-left bottom bottom-right```
             size (tuple[tuple[int,int],int]) : taille du bouton, le premier tuple contient la largeur en pourcentage par rapport a la fenetre et le deuxieme le ratio
             action (list) : liste contenant les action a effectuer par le bouton
             texture (str) : chemin vers la texture a partir du dossier "assets", a renseigner de preference avec ```os.sep.join(['chemin','vers','la','texture.png'])```
@@ -33,6 +33,7 @@ class Button(pygame.sprite.Sprite):
         else:
             self.TEXTURE_HOOVER =  None
         self.TEXT : str = text
+        self.TEXT_COLOR : tuple[int,int,int] = textColor
         
         self.position : tuple[int,int]
         self.size : tuple[int,int]
@@ -81,7 +82,7 @@ class Button(pygame.sprite.Sprite):
         font_size = self.hitbox.height  # Commence par la hauteur du bouton
         while font_size > 0:
             font = pygame.font.Font(self.PATH_FONT, font_size)
-            text_surface = font.render(self.TEXT, True, (255,255,255))
+            text_surface = font.render(self.TEXT, True, self.TEXT_COLOR)
             if text_surface.get_width() <= self.hitbox.width*0.8 and text_surface.get_height() <= self.hitbox.height*0.8:
                 break  # La taille de police convient
             font_size -= 1
@@ -96,7 +97,7 @@ class Button(pygame.sprite.Sprite):
             self.screen.blit(self.texture, self.position)
 
         if self.TEXT:
-            text_surface = self.font.render(self.TEXT, True, (255, 255, 255))
+            text_surface = self.font.render(self.TEXT, True, self.TEXT_COLOR)
             text_rect = text_surface.get_rect(center=self.hitbox.center)
             self.screen.blit(text_surface, text_rect)
 

@@ -1,6 +1,7 @@
 {
     "menu" : {
-        "main_menu" : null
+        "main_menu" : null,
+        "settings" : null
     },
     "pasDeVirus" : {
         "menu" : null,

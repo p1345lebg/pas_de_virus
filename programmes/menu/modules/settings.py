@@ -1,6 +1,6 @@
-class GlobalMain:
-    def __init__(self) -> None:
-        pass
+class MenuSettings:
+    def __init__(self, screen) -> None:
+        self.screen = screen
 
     def update(self, events) -> list:
         """

@@ -1,4 +1,4 @@
-from .modules import MenuMain
+from .modules import MenuMain,MenuSettings
 
 class Menu:
 
@@ -15,6 +15,8 @@ class Menu:
         match input[0]:
             case 'main_menu':
                 self.active = MenuMain(self.screen)
+            case 'settings':
+                self.active = MenuSettings(self.screen)
 
     def handle_output(self, output):
         if output:
