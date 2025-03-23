@@ -1,4 +1,4 @@
-from .modules import Update
+from .modules import Update, Menu
 
 from programmes.components import Button
 
@@ -12,15 +12,20 @@ class PasDeVirus:
     #     output = self.active.run(events, self.screen)
     #     if output:
     #         return self.handle_output(output)
-
+        self.screen = screen
         self.active = Update(screen)
 
     def update(self, events, screen) -> list:
-        self.handle_output(self.active.run(events, screen))
+        output = self.active.run(events, screen)
+        if output:
+            return self.handle_output(output)
 
     def handle_input(self, input : list):
         match input[0]:
             case 'menu':
+                self.active = Menu(self.screen)
+
+            case 'game':
                 self.active = Update()
 
     def handle_output(self, output):
