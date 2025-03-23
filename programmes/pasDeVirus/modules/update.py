@@ -3,7 +3,7 @@ import pygame
 from programmes.settings import Settings
 from programmes.pasDeVirus.modules import draw
 
-class Update:
+class Game:
     def __init__(self, screen):
         pygame.init()
         self.settings : Settings = Settings()

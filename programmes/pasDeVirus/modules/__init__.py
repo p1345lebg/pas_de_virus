@@ -1,3 +1,3 @@
 from .menu import Menu
-from .update import Update
+from .update import Game
 from .draw import Draw

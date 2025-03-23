@@ -22,8 +22,8 @@ class Game:
         self.custom_cursor = pygame.transform.scale(self.custom_cursor, self.settings.get_mouse_size())
         
         #temporaire
-        self.active = PasDeVirus(self.screen)
         self.active = Menu(self.screen)
+        self.active = PasDeVirus(self.screen)
 
     def run(self) -> None:
         running : bool = True
