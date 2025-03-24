@@ -9,7 +9,7 @@ class Game:
         self.screen : pygame.Surface = screen
         tileSheet = pygame.image.load(os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
         self.background = BackgroundTileSheet(screen, tileSheet)
-        self.playground = PlayGround(self.screen, [[1]])
+        self.playground = PlayGround(self.screen)
         #self.positions = self.playground.get_position()
 
     def update(self, events):
