@@ -2,7 +2,7 @@ import pygame
 import os
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,tuple[int,int]], action : list = ['none'], texture : str = os.sep.join(['assets','buttons','default.png']), texture_hoover : str = None, text : str = '', textColor : tuple = (0,0,0)):
+    def __init__(self, screen:  pygame.Surface , position : tuple[int,int,str], size : tuple[int,tuple[int,int]], action : list = [], texture : str = os.sep.join(['assets','buttons','default.png']), texture_hoover : str = None, text : str = '', textColor : tuple = (0,0,0)):
         """
         bouton
 
