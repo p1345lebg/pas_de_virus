@@ -26,6 +26,7 @@ class PlayGround:
                     self.GRASS.append(grass.subsurface((i*x,j*y),(x,y)).convert_alpha())
 
         self.widthInTile = 18
+        self.pawnPositions : list[tuple[int,int]]
         self.update_screen(screen)
 
         self.animationCounter = 0
@@ -75,11 +76,17 @@ class PlayGround:
         
         self.playgroundRect = self.border.get_rect(center=(screen_x // 2, screen_y // 2))
 
-        self.lilypadSurface : pygame.surface = pygame.Surface((self.playgroundSize,self.playgroundSize), pygame.SRCALPHA)
-        self.border.fill((0,0,0,0))
+        self.lilypadSurface : pygame.Surface = pygame.Surface((self.playgroundSize,self.playgroundSize), pygame.SRCALPHA)
+        self.lilypadSurface.fill((0,0,0,0))
 
-    def get_position():
-        pass
+        self.pawnPositions = []
+        
+        #a faire avec une liste de pourcentage préfaite
+
+
+
+    def get_position(self):
+        return self.pawnPositions
 
     def draw(self):
         self.animationCounter += 1
@@ -95,6 +102,7 @@ class PlayGround:
                 playground.blit(waterTile,(x*self.tileSize,y*self.tileSize))
 
         playground.blit(self.border,(0,0))
+        playground.blit(self.lilypadSurface,(0,0))
 
         self.screen.blit(playground,self.playgroundRect)
 

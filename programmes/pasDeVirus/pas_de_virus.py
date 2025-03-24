@@ -11,7 +11,7 @@ class PasDeVirus:
         self.active = Menu(self.screen)
 
     def update(self, events) -> list:
-        output = self.active.run(events)
+        output = self.active.update(events)
         if output:
             return self.handle_output(output)
 
@@ -22,7 +22,6 @@ class PasDeVirus:
 
             case 'game':
                 self.handle_game(input[1:])
-                self.active = Game(self.screen)
 
     def handle_output(self, output):
         if output:
@@ -32,8 +31,8 @@ class PasDeVirus:
                 return output
             
     def handle_game(self, input):
-        with open(os.sep.join(['data','pasDeVirus','levels']),'r') as file:
+        with open(os.sep.join(['data','pasDeVirus','levels.json']),'r') as file:
             levels = json.load(file)
-
+        
         if input[0] in levels and input[1] in levels[input[0]]:
-            self.active = Game(self.screen, levels[input[0]]['disposition'])
+            self.active = Game(self.screen, levels[input[0]][input[1]]['disposition'])

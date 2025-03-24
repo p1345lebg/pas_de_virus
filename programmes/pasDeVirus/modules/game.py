@@ -10,14 +10,11 @@ class Game:
         tileSheet = pygame.image.load(os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
         self.background = BackgroundTileSheet(screen, tileSheet)
         self.playground = PlayGround(self.screen, [[1]])
-        self.positions = PlayGround.get_position()
+        #self.positions = self.playground.get_position()
 
-    def run(self, events):
-        
-        self.manageEvents(events)
+    def update(self, events):
+        for event in events:
+            break
 
         self.background.draw()
         self.playground.draw()
-
-    def manageEvents(self, events):
-        pass

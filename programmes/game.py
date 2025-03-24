@@ -21,9 +21,8 @@ class Game:
         self.custom_cursor = pygame.image.load(os.sep.join([PATH_ASSETS_CUTE, 'Sprite sheets', 'Mouse sprites', 'Catpaw Mouse icon.png'])).convert_alpha()
         self.custom_cursor = pygame.transform.scale(self.custom_cursor, self.settings.get_mouse_size())
         
-        #temporaire
+
         self.active = Menu(self.screen)
-        self.active = PasDeVirus(self.screen)
 
     def run(self) -> None:
         running : bool = True
@@ -40,7 +39,6 @@ class Game:
 
             output = self.active.update(events)
             if output:
-                print(output)
                 self.handle_output(output)
             
             # Cursor custom
