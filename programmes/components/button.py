@@ -8,7 +8,7 @@ class Button(pygame.sprite.Sprite):
 
         Args:
             screen (pygame.Surface) : surface sur laquelle est dessiné le bouton
-            position (tuple[int,int,str]) : poistion du bouton (en pourcentage), la troisieme valeur determine à partir d'où la position est calculée \n```top-left top top-right left center right bottom-left bottom bottom-right```
+            position (tuple[int,int,str]) : poistion du bouton (en pourcentage), la troisieme valeur determine à partir d'où la position est calculée ```top-left top top-right left center right bottom-left bottom bottom-right```
             size (tuple[tuple[int,int],int]) : taille du bouton, le premier tuple contient la largeur en pourcentage par rapport a la fenetre et le deuxieme le ratio
             action (list) : liste contenant les action a effectuer par le bouton
             texture (str) : chemin vers la texture a partir du dossier "assets", a renseigner de preference avec ```os.sep.join(['chemin','vers','la','texture.png'])```
