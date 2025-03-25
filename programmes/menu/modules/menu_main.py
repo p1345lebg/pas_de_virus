@@ -20,7 +20,7 @@ class MenuMain:
             retourne une liste contenant les données à traiter
         """
         for event in events:
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONUP:
                 for button in self.buttons:
                     output = button.handle_click()
                     if output:

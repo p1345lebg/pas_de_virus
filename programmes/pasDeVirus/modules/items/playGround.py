@@ -6,7 +6,8 @@ from programmes.settings import Settings
 
 
 class PlayGround:
-    def __init__(self, screen: pygame.Surface , PATH_WATER : str = os.sep.join(['assets','SproutTiles','Tilesets','Water.png']),
+    def __init__(self, screen: pygame.Surface , level : dict[str,list[list[int]]|int],
+                                                PATH_WATER : str = os.sep.join(['assets','SproutTiles','Tilesets','Water.png']),
                                                 PATH_GROUND : str = os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']),
                                                 PATH_SUPORT : str = os.sep.join(['assets', 'pasDeVirus', 'suport', 'lilypads.png'])):
         """
@@ -14,11 +15,16 @@ class PlayGround:
 
         Args:
             -screen(pygame.Surface) : surface sur laquelle est dessiné le terrain de jeu
+            -level(dict[str,list[list[int]]|int]) : disposition du niveau plus toutes ses informations
             -PATH_WATER(str) : chemin vers le tileset de l'eau ```os.sep.join(['chemin','tileset.png'])```
             -PATH_WATER(str) : chemin vers le tileset du sol ```os.sep.join(['chemin','tileset.png'])```
             -PATH_SUPORT(str): chemin vers le tileset du suport ```os.sep.join(['chemin','tileset.png'])```
         """
         self.screen : pygame.Surface
+        self.levelDisposition = level['disposition']
+
+
+
         self.WATER : list[pygame.Surface] = []
         water = pygame.image.load(PATH_WATER).convert_alpha()
         x,y = water.get_size()
@@ -98,20 +104,23 @@ class PlayGround:
         self.suportSurface : pygame.Surface = pygame.Surface((self.playgroundSize,self.playgroundSize), pygame.SRCALPHA)
         self.suportSurface.fill((0,0,0,0))
 
-        pawnPositionsPercent = [[(24,24),(41,24),(59,24),(76,24)],
-                                    [(33,33),(33,50),(33,67)],
-                                [(24,41),(41,41),(59,41),(76,41)],
-                                    [(50,33),(50,50),(50,67)],
-                                [(24,59),(41,59),(59,59),(76,59)],
-                                    [(67,33),(67,50),(67,67)],
-                                [(24,76),(41,76),(59,76),(76,76)]]
-        self.pawnPositions : list[list[tuple[int,int]]] = []
+        pawnPositionsPercent = [[(24,24),(24,41),(24,59),(24,76)],
+                                    [(33,33),(50,33),(67,33)],
+                                [(41,24),(41,41),(41,59),(41,76)],
+                                    [(33,50),(50,50),(67,50)],
+                                [(59,24),(59,41),(59,59),(59,76)],
+                                    [(33,67),(50,67),(67,67)],
+                                [(76,24),(76,41),(76,59),(76,76)]]
+        self.possiblePawnPositions : list[list[tuple[int,int]]] = []
 
 
-        for i in pawnPositionsPercent:
-            for pos in i:
-                x = randint(0,1)
-                self.suportSurface.blit(self.suport[x], (playgroundSize/100*pos[0]-tileSize,playgroundSize/100*pos[1]-tileSize))
+        for i in range(len(pawnPositionsPercent)):
+            for j in range(len(pawnPositionsPercent[i])):
+                if self.levelDisposition[i][j] != 'B':
+                    x = randint(0,1)
+                    pos = pawnPositionsPercent[i][j]
+                    self.suportSurface.blit(self.suport[x], (playgroundSize/100*pos[0]-tileSize,playgroundSize/100*pos[1]-tileSize))
+                    self.possiblePawnPositions.append(pos)
 
         self.suportSurface.blit(self.suport[2],(playgroundSize/100*15-tileSize,playgroundSize/100*15-tileSize))
 

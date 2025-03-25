@@ -35,4 +35,4 @@ class PasDeVirus:
             levels = json.load(file)
         
         if input[0] in levels and input[1] in levels[input[0]]:
-            self.active = Game(self.screen, levels[input[0]][input[1]]['disposition'])
+            self.active = Game(self.screen, levels[input[0]][input[1]])
