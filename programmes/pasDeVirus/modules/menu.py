@@ -9,8 +9,7 @@ class Menu:
         self.backgroundTileSheet = pygame.image.load(PATH_BACKGROUD_TILESHEET)
         self.background = BackgroundTileSheet(self.screen, PATH_BACKGROUD_TILESHEET)
         self.buttons = {
-            Button(screen, (0,0,'center'),(10,(2,1)), ['menu','main_menu'])
-            Button(screen,(1,50,"left"),(5,(5,5),['pasDeVirus','game','baby','level1'],os.sep.join(['assets',''])))
+            Button(screen,(50,50,'center'),(5,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','easy.png']),None,'',(255,2,10))
         }
 
     def update(self, events):
