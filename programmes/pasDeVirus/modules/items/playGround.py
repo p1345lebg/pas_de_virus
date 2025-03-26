@@ -21,22 +21,6 @@ class PlayGround:
             -PATH_SUPORT(str): chemin vers le tileset du suport ```os.sep.join(['chemin','tileset.png'])```
         """
         self.screen : pygame.Surface
-        self.levelDisposition = level['disposition']
-
-        PATH_VIRUS = os.sep.join(['assets','char_sprite','virus.png'])
-        PATH_CHAR1 = os.sep.join(['assets','char_sprite','moon.png'])
-        PATH_CHAR2 = os.sep.join(['assets','char_sprite','nuage_claire.png'])
-        PATH_CHAR3 = os.sep.join(['assets','char_sprite','nuage_triste.png'])
-        PATH_CHAR4 = os.sep.join(['assets','char_sprite','sun_dodo.png'])
-        PATH_CHAR5 = os.sep.join(['assets','char_sprite','sun_happy.png'])
-
-        #charge les sprites
-        self.VIRUS : pygame.Surface = pygame.image.load(PATH_VIRUS)
-        self.CHAR1 : pygame.Surface = pygame.image.load(PATH_CHAR1)
-        self.CHAR2 : pygame.Surface = pygame.image.load(PATH_CHAR2)
-        self.CHAR3 : pygame.Surface = pygame.image.load(PATH_CHAR3)
-        self.CHAR4 : pygame.Surface = pygame.image.load(PATH_CHAR4)
-        self.CHAR5 : pygame.Surface = pygame.image.load(PATH_CHAR5)
 
         #charge la tile set de l'eau
         self.WATER : list[pygame.Surface] = []
@@ -158,8 +142,8 @@ class PlayGround:
             for pos in pawnPositionsPercent[i]:
                 self.pawnPositions[i].append((self.playgroundSize/100*pos[0]-self.tileSize/1.5,self.playgroundSize/100*pos[1]-self.tileSize))
 
-    def get_pawn_position(self):
-        return self.pawnPositions()
+    def get_pawn_positions(self):
+        return self.pawnPositions
 
     def update(self, events):
         pass
