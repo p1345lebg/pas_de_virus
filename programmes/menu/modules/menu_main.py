@@ -9,6 +9,7 @@ class MenuMain:
         PATH_BACKGROUD_TILESHEET = os.path.join(os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
         self.background = BackgroundTileSheet(self.screen, PATH_BACKGROUD_TILESHEET)
         self.buttons = {
+            Button(screen,(84,15,'center'),(5,(1,1)),['quit'],os.sep.join(['assets','buttons','cross_unpressed.png']),os.sep.join(['assets','buttons','cross_pressed.png']),'',(0,0,0)),
             Button(screen,(50,50,"center"),(10,(15,5)),['pasDeVirus', 'menu'],os.sep.join(['assets','buttons','start_buttons_unpressed-01.png']),os.sep.join(['assets','buttons','start_buttons_pressed-01.png']),'',(255,2,10))
         }
 
