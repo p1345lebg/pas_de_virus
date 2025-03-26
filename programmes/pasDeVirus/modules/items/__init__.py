@@ -1,2 +1,2 @@
-from .draw import Draw
 from .playGround import PlayGround
+from .pawn import Pawn

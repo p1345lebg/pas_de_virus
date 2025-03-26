@@ -9,7 +9,7 @@ class Game:
         self.screen : pygame.Surface = screen
         self.background = BackgroundTileSheet(screen, os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
         self.playground = PlayGround(self.screen, level)
-        #self.positions = self.playground.get_position()
+
 
     def update(self, events):
         for event in events:
@@ -17,3 +17,5 @@ class Game:
 
         self.background.draw()
         self.playground.draw()
+        """for pawn in self.pawns:
+            pawn.draw()"""
