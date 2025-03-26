@@ -12,6 +12,9 @@
       ],
       "move limit" : 17,
       "pawns" : {
+        "X" : {
+          "texture" : ["assets","char_sprite","virus.png"]
+        },
         "1" : {
           "texture" : ["assets","char_sprite","sun_happy.png"]
         }
@@ -35,6 +38,9 @@
       ],
       "move limit" : 17,
       "pawns" : {
+        "X" : {
+          "texture" : ["assets","char_sprite","virus.png"]
+        },
         "1" : {
           "texture" : ["assets","char_sprite","sun_happy.png"]
         },

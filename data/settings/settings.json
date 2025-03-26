@@ -7,5 +7,6 @@
   "mouseSize": [
     40,
     40
-  ]
+  ],
+  "fullScreen" : false
 }

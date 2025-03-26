@@ -1,5 +1,6 @@
 {
   "windowSize" : [1920,1080],
   "FPS" : 60,
-  "mouseSize" : [40,40]
+  "mouseSize" : [40,40],
+  "fullScreen" : false
 }
