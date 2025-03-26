@@ -30,8 +30,8 @@ class Tile:
         self.update_textures()
 
     def load_textures(self) -> None:
-        PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)),'assets/ressourcesActives/textures/demineur')
-        tileSheet = pygame.image.load(os.path.join(PATH, 'tilesheet.png'))
+        PATH = os.sep.join(['assets','demineur'])
+        tileSheet = pygame.image.load(os.sep.join([PATH, 'tilesheet.png']))
         numberSheet = pygame.image.load(os.path.join(PATH, 'numbersheet.png'))
 
         self.__tileSheet = [[],[]]
@@ -65,7 +65,6 @@ class Tile:
         
     def toggle_flag(self) -> None:
         if self.revealed:
-            print('Tile already revealed')
             return
         
         if self.flag == 1:
@@ -157,6 +156,7 @@ class Game:
             if abs(tile.coordonatesGrid[0] - tile_centered.coordonatesGrid[0]) <= 1 and 
             abs(tile.coordonatesGrid[1] - tile_centered.coordonatesGrid[1]) <= 1
         }
+        self.win = False
         
         # Liste des tuiles où placer les mines
         available_tiles = list(set(self.tiles) - excluded_tiles)
@@ -175,6 +175,9 @@ class Game:
             ]
             for neighbor in filter(None, neighbors):
                 tile.add_surounding(neighbor)
+
+    def verify_win(self):
+        pass
 
 
     def update(self, events) -> None:
