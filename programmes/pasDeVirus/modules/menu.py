@@ -20,11 +20,12 @@ class Menu:
 
     def update(self, events):
         for event in events:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                for button in self.buttons:
-                    output = button.handle_click()
-                    if output:
-                        return output
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.dict['button'] == [1]:
+                    for button in self.buttons:
+                        output = button.handle_click()
+                        if output:
+                            return output
         self.background.draw()
 
         for button in self.buttons:
