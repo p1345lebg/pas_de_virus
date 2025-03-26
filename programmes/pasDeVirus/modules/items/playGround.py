@@ -1,7 +1,6 @@
 import pygame
 import os
 from random import randint
-#from .pawn import Pawn
 
 from programmes.settings import Settings
 
@@ -151,6 +150,7 @@ class PlayGround:
                     x = randint(0,1)
                     pos = pawnPositionsPercent[i][j]
                     self.suportSurface.blit(self.suport[x], (playgroundSize/100*pos[0]-tileSize,playgroundSize/100*pos[1]-tileSize))
+        self.suportSurface.blit(self.suport[2], (playgroundSize/100*15-tileSize,playgroundSize/100*15-tileSize))
 
         #definie la position des pions
         self.pawnPositions = [[],[],[],[],[],[],[]]
@@ -158,37 +158,11 @@ class PlayGround:
             for pos in pawnPositionsPercent[i]:
                 self.pawnPositions[i].append((self.playgroundSize/100*pos[0]-self.tileSize/1.5,self.playgroundSize/100*pos[1]-self.tileSize))
 
-        #definie de dictionnaire des pions
-        self.pawnsDict : dict = {
-            'X' : self.virus
-        }
-        disponibleTexture = {
-            self.char1,
-            self.char2,
-            self.char3,
-            self.char4,
-            self.char5
-        }
-
-        for i in self.levelDisposition:
-            for pawn in i:
-                if pawn and pawn != 'B':
-                    if pawn not in self.pawnsDict:
-                        self.pawnsDict[pawn] = disponibleTexture.pop()
+    def get_pawn_position(self):
+        return self.pawnPositions()
 
     def update(self, events):
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.K_TAB:
-                pass
-            if event.type == pygame.K_a:
-                pass
-            if event.type == pygame.K_z:
-                pass
-            if event.type == pygame.K_q:
-                pass
-            if event.type == pygame.K_s:
-                pass
+        pass
 
     def draw(self):
         self.animationCounter += 1
@@ -205,11 +179,6 @@ class PlayGround:
 
         playground.blit(self.border,(0,0))
         playground.blit(self.suportSurface,(0,0))
-
-        for i in range(len(self.levelDisposition)):
-            for j in range(len(self.levelDisposition[i])):
-                if self.levelDisposition[i][j] in self.pawnsDict:
-                    playground.blit(self.pawnsDict[self.levelDisposition[i][j]], self.pawnPositions[i][j])
 
         self.screen.blit(playground,self.playgroundRect)
 
