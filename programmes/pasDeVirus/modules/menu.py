@@ -19,7 +19,7 @@ class Menu:
             Button(screen,(25+25/6+25/6,75,'center'),(10,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','normal.png']),None,'',(255,2,10)),
             Button(screen,(75-26/6-26/6,75,'center'),(10,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','hard.png']),None,'',(255,2,10)),
             Button(screen,(75-26/6,60,'center'),(10,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','really_hard.png']),None,'',(255,2,10)),
-            Button(screen,(75,50,'center'),(10,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','diabolical.png']),None,'',(255,2,10))
+            Button(screen,(75,50,'center'),(10,(5,5)),['pasDeVirus','game','impossible','wizard'],os.sep.join(['assets','level_icone','diabolical.png']),None,'',(255,2,10))
         }
 
     def update(self, events):
