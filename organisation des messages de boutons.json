@@ -11,5 +11,13 @@
                 "nom du niveau"
             ]
         }
+    },
+    "settings" : {
+        "save" : null,
+        "reset": null,
+        "resetDefault" : null,
+        "windowSize" : ["taille de la fenetre"],
+        "FPS" : 60,
+        "mouseSize" : ["taille de la souris"]
     }
 }
