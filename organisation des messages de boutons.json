@@ -1,4 +1,5 @@
-{
+{   
+    "quit" : null,
     "menu" : {
         "main_menu" : null,
         "settings" : null
