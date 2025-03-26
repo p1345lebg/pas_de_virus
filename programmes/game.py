@@ -25,12 +25,12 @@ class Game:
         self.active = Menu(self.screen)
 
     def run(self) -> None:
-        running : bool = True
+        self.running : bool = True
         clock = pygame.time.Clock()
 
         output : list
 
-        while running:
+        while self.running:
             self.screen.fill((0,0,0))
             events = pygame.event.get()
             for event in events:
@@ -52,8 +52,8 @@ class Game:
 
     def handle_output(self, output : list) -> None:
         match output[0]:
-            case 'none':
-                return
+            case 'quit':
+                self.running = False
                 
             case 'settings':
                 self.settings.handle_input(output[1:])
