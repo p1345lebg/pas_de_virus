@@ -10,12 +10,47 @@
 					["","",""],
         ["","","",""]
       ],
-      "move limit" : 17
+      "move limit" : 17,
+      "pawns" : {
+        "1" : {
+          "texture" : ["assets","char_sprite","sun_happy.png"]
+        }
+      }
     }
   },
   "easy":{},
   "medium":{},
   "hard":{},
   "insane":{},
-  "impossible":{}
+  "impossible":{
+    "level1":{
+      "disposition":[
+        ["2","4","4",""],
+          ["","",""],
+        ["2","4","3","5"],
+          ["3","3","5"],
+        ["","","1","1"],
+					["","X","1"],
+        ["","","X",""]
+      ],
+      "move limit" : 17,
+      "pawns" : {
+        "1" : {
+          "texture" : ["assets","char_sprite","sun_happy.png"]
+        },
+        "2" : {
+          "texture" : ["assets","char_sprite","sun_dodo.png"]
+        },
+        "3" : {
+          "texture" : ["assets","char_sprite","nuage_claire.png"]
+        },
+        "4" : {
+          "texture" : ["assets","char_sprite","nuage_triste.png"]
+        },
+        "5" : {
+          "texture" : ["assets","char_sprite","moon.png"]
+        }
+      }
+    }
+  }
 }

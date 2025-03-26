@@ -91,7 +91,7 @@ class Button(pygame.sprite.Sprite):
 
     def draw(self):
         cursor_pos = pygame.mouse.get_pos()
-        if pygame.mouse.get_pressed()[0] and self.hitbox.collidepoint(cursor_pos) and self.TEXTURE_HOOVER:
+        if pygame.mouse.get_pressed()[0] and self.TEXTURE_HOOVER and self.hitbox.collidepoint(cursor_pos):
             self.screen.blit(self.textureHoover, self.position)
         else:
             self.screen.blit(self.texture, self.position)
