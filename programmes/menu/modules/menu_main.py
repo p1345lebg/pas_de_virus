@@ -8,12 +8,14 @@ class MenuMain:
         self.screen = screen
         PATH_BACKGROUD_TILESHEET = os.path.join(os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
         self.background = BackgroundTileSheet(self.screen, PATH_BACKGROUD_TILESHEET)
-        self.buttons = {
+        self.buttons = [
+            Button(screen,(50,40,'center'),(40,(16,4)),['quit'],os.sep.join(['assets','buttons','long_button.png']),None,'LeS aVeNTuReS DeS DaNNieS',(0,0,0)),
             Button(screen,(100,0,'top-right'),(5,(1,1)),['quit'],os.sep.join(['assets','buttons','cross_unpressed.png']),os.sep.join(['assets','buttons','cross_pressed.png']),'',(0,0,0)),
             Button(screen,(100,5,'top-right'),(5,(5,5)),['quit'],text='Quit',textColor=(0,0,0)),
             Button(screen,(50,70,"center"),(30,(15,5)),['pasDeVirus', 'menu'],os.sep.join(['assets','buttons','start_buttons_unpressed-01.png']),os.sep.join(['assets','buttons','start_buttons_pressed-01.png']),'',(255,2,10)),
-            Button(screen,(50,0,'top'),(50,(1,1)),['quit'],text='LeS aVeNTuReS De DaNNy',textColor=(0,0,0)),
-        }
+            Button(screen,(35,50,'center'),(5,(1,1)),['quit'],os.sep.join(['assets','char_sprite','virus.png']),os.sep.join(['assets','buttons','cross_pressed.png']),'',(0,0,0)),
+            Button(screen,(65,50,'center'),(5,(1,1)),['quit'],os.sep.join(['assets','char_sprite','virus.png']),os.sep.join(['assets','buttons','cross_pressed.png']),'',(0,0,0)),
+        ]
 
 
     def update(self, events : list) -> list:
