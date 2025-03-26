@@ -9,7 +9,7 @@ class Menu:
         self.backgroundTileSheet = pygame.image.load(PATH_BACKGROUD_TILESHEET)
         self.background = BackgroundTileSheet(self.screen, PATH_BACKGROUD_TILESHEET)
         self.buttons = {
-            
+            Button(screen,(50,25,'center'),(20,(20,5)),None,os.sep.join(['assets','buttons','long_button.png']),None,'Select a level',(0,0,0)),
             Button(screen,(25,50,'center'),(5,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','easy.png']),None,'',(255,2,10)),
             Button(screen,(33,60,'center'),(5,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','oh.png']),None,'',(255,2,10)),
             Button(screen,(41,75,'center'),(5,(5,5)),['pasDeVirus','game','baby','level1'],os.sep.join(['assets','level_icone','normal.png']),None,'',(255,2,10)),
