@@ -2,14 +2,15 @@ import pygame
 from random import choices
 
 class BackgroundTileSheet:
-    def __init__(self, screen, tileSheet : pygame.Surface) -> None:
+    def __init__(self, screen, tileSheet : str) -> None:
         """
         background
 
         Args:
             -screen (pygame.Surface) : écran sur lequel ets dessiné le fond d'écran
-            -tileSheet (pygame.Surface) : TileSheet
+            -tileSheet (pygame.Surface) : chemin vers la tileSheet
         """
+        tileSheet = pygame.image.load(tileSheet)
         self.screen : pygame.Surface
         tileSheet_width : int = tileSheet.get_width()
         tileSheet_height : int = tileSheet.get_height()
