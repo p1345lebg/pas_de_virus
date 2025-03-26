@@ -2,7 +2,7 @@ import pygame
 import os
 
 from programmes.components import BackgroundTileSheet
-from .items import Draw,PlayGround
+from .items import PlayGround
 
 class Game:
     def __init__(self, screen : pygame.Surface, level : dict[str,list[list[list]]|int]):
