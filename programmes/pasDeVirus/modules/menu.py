@@ -9,8 +9,8 @@ class Menu:
         self.backgroundTileSheet = pygame.image.load(PATH_BACKGROUD_TILESHEET)
         self.background = BackgroundTileSheet(self.screen, PATH_BACKGROUD_TILESHEET)
         self.buttons = {
-            Button(screen,(0,0,'top-left'),(5,(5,5)),['menu','main_menu'],os.sep.join(['assets','buttons','back.png']),None,'',(0,0,0)),
-            Button(screen,(0,5,'top-left'),(5,(5,5)),['menu','main_menu'],text='Back',textColor=(0,0,0)),
+            Button(screen,(0,0,'top-left'),(5,(5,5)),['menu','main_menu'],os.sep.join(['assets','buttons','home_unpressed.png']),os.sep.join(['assets','buttons','home_pressed.png']),'',(0,0,0)),
+            Button(screen,(0,5,'top-left'),(5,(5,5)),['menu','main_menu'],text='Home',textColor=(0,0,0)),
             Button(screen,(100,0,'top-right'),(5,(1,1)),['quit'],os.sep.join(['assets','buttons','cross_unpressed.png']),os.sep.join(['assets','buttons','cross_pressed.png']),'',(0,0,0)),
             Button(screen,(100,5,'top-right'),(5,(5,5)),['quit'],text='Quit',textColor=(0,0,0)),
             Button(screen,(50,25,'center'),(40,(20,5)),None,os.sep.join(['assets','buttons','long_button.png']),None,'Select a level',(0,0,0)),
