@@ -35,7 +35,7 @@ class Game:
             events = pygame.event.get()
             for event in events:
                 if event.type == pygame.QUIT:
-                    running = False
+                    self.running = False
 
             output = self.active.update(events)
             if output:
