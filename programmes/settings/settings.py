@@ -9,6 +9,7 @@ class Settings:
             self.settings : dict = json.load(file)
         self.saved : bool = True
 
+
     def handle_input(self, input):
         match input[0]:
             case 'save':
@@ -39,6 +40,9 @@ class Settings:
             case 'mouseSize':
                 self.settings['mouseSize'] = input[1] if type(input[1]) == tuple else (40,40)
                 self.saved = False
+
+            case 'fullScreen':
+                pygame.display.toggle_fullscreen()
 
     def get_window_size(self) -> tuple[int,int]:
         return self.settings['windowSize']
