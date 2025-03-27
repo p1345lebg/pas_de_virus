@@ -32,7 +32,7 @@ class Tile:
     def load_textures(self) -> None:
         PATH = os.sep.join(['assets','demineur'])
         tileSheet = pygame.image.load(os.sep.join([PATH, 'tilesheet.png']))
-        numberSheet = pygame.image.load(os.path.join(PATH, 'numbersheet.png'))
+        numberSheet = pygame.image.load(os.path.join(PATH, 'numberSheet.png'))
 
         self.__tileSheet = [[],[]]
         self.__numberSheet = []
@@ -129,6 +129,7 @@ class Game:
         self.window_pos : tuple[int,int] = (0,0)
 
         self.mines_not_generated : bool = True
+        self.lose = False
         
 
         self.gridSize : tuple[int,int] = gridSize
@@ -137,11 +138,11 @@ class Game:
         
         x,y = self.window_screen.get_size()
         self.tile_size : int = y // self.gridSize[1]
-        self.window_pos = ((x-self.tile_size*self.gridSize[0])//2)
+        #self.window_pos = ((x-self.tile_size*self.gridSize[0])//2)
         if self.tile_size * self.gridSize[0] > x:
             self.tile_size = x // self.gridSize[0]
             truc = self.gridSize[0]
-            self.window_pos = ((y-self.tile_size*self.gridSize[1])//2)
+            #self.window_pos = ((y-self.tile_size*self.gridSize[1])//2)
 
 
         self.tiles : set[Tile] = set()
@@ -153,7 +154,6 @@ class Game:
 
     def generate_mines(self, tile_centered: Tile) -> None:
         self.mines_not_generated = False
-        self.lose = False
         
         excluded_tiles = {
             tile for tile in self.tiles 
@@ -182,7 +182,7 @@ class Game:
 
     def verify_win(self) -> bool:
         for tile in self.tiles:
-            if not tile.isMine or not tile.revealed:
+            if not (tile.isMine or tile.revealed):
                 return False
         return True
 
