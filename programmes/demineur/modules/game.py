@@ -125,8 +125,8 @@ class Game:
 
         self.screen : pygame.Surface = screen
 
-        self.window_pos : tuple[int,int] = (30,0)
         self.window_screen : pygame.Surface = pygame.Surface(self.screen.get_size())
+        self.window_pos : tuple[int,int] = (0,0)
 
         self.mines_not_generated : bool = True
         
@@ -137,8 +137,11 @@ class Game:
         
         x,y = self.window_screen.get_size()
         self.tile_size : int = y // self.gridSize[1]
+        self.window_pos = ((x-self.tile_size*self.gridSize[0])//2)
         if self.tile_size * self.gridSize[0] > x:
             self.tile_size = x // self.gridSize[0]
+            truc = self.gridSize[0]
+            self.window_pos = ((y-self.tile_size*self.gridSize[1])//2)
 
 
         self.tiles : set[Tile] = set()
@@ -150,6 +153,7 @@ class Game:
 
     def generate_mines(self, tile_centered: Tile) -> None:
         self.mines_not_generated = False
+        self.lose = False
         
         excluded_tiles = {
             tile for tile in self.tiles 
@@ -176,8 +180,11 @@ class Game:
             for neighbor in filter(None, neighbors):
                 tile.add_surounding(neighbor)
 
-    def verify_win(self):
-        pass
+    def verify_win(self) -> bool:
+        for tile in self.tiles:
+            if not tile.isMine or not tile.revealed:
+                return False
+        return True
 
 
     def update(self, events) -> None:
@@ -192,6 +199,7 @@ class Game:
                             if not tile.reveal():
                                 for tile in self.tiles:
                                     tile.showMine = True
+                                    self.lose = True
 
                 elif event.dict['button'] == 3:
                     for tile in self.tiles:
@@ -200,4 +208,11 @@ class Game:
         for tile in self.tiles:
             tile.draw(self.window_screen)
 
+        
+
         self.screen.blit(self.window_screen, self.window_pos)
+
+        if self.verify_win():
+            return ['demineur','menu']
+        if self.lose :
+            return ['demineur','menu']

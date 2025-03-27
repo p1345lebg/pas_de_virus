@@ -4,6 +4,7 @@ import os
 from programmes.settings import Settings
 from programmes.menu import Menu
 from programmes.pasDeVirus import PasDeVirus
+from programmes.demineur import Demineur
 
 
 class Game:
@@ -66,4 +67,9 @@ class Game:
             case 'pasDeVirus':
                 if type(self.active) != PasDeVirus:
                     self.active = PasDeVirus(self.screen)
+                self.active.handle_input(output[1:])
+
+            case 'demineur':
+                if type(self.active) != Demineur:
+                    self.active = Demineur(self.screen)
                 self.active.handle_input(output[1:])

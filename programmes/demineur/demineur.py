@@ -5,7 +5,7 @@ from programmes.components import Button
 
 from .modules import Game, Menu
 
-class PasDeVirus:
+class Demineur:
     def __init__(self, screen)->None:
         self.screen = screen
         self.active = Menu(self.screen)
@@ -31,4 +31,4 @@ class PasDeVirus:
                 return output
             
     def handle_game(self, input):
-        pass
+        self.active = Game(self.screen, input[0], input[1])
