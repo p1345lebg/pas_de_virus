@@ -54,7 +54,7 @@ class Tile:
         self.numberSheet = [pygame.transform.scale(number, (self.size, self.size)) for number in self.__numberSheet]
 
     def __str__(self) -> str:
-        return f'{4*' '}Tile at {self.coordonatesGrid=} and {self.coordonates=} is {self.revealed=} and {self.flag=}'
+        return f'(4*' ')Tile at {self.coordonatesGrid=} and {self.coordonates=} is {self.revealed=} and {self.flag=}'
 
     def is_touched(self, pos : tuple[int,int]) -> bool:
         x,y = pos
