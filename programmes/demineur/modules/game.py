@@ -195,7 +195,7 @@ class Game:
 
     def update(self, events) -> None:
         for event in events:
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONUP:
                 if event.dict['button'] == 1:
                     for tile in self.tiles:
                         if tile.is_touched((event.dict['pos'][0]-self.window_pos[0], event.dict['pos'][1]-self.window_pos[1])):
