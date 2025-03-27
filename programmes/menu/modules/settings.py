@@ -16,11 +16,11 @@ class MenuSettings:
             Button(screen,(0,0,'top-left'),(5,(5,5)),['menu','main_menu'],os.sep.join(['assets','buttons','back.png']),None,'',(0,0,0)),
             Button(screen,(0,5,'top-left'),(5,(5,5)),['menu','main_menu'],text='Back',textColor=(0,0,0)),
             #Mouse size
-
-
-            Button(screen,(40,30,'center'),(5,(1,1)),None,os.sep.join(['assets','mouse','triangle.png']),None,'',(0,0,0)),
-            Button(screen,(50,30,'center'),(10,(1,1)),None,os.sep.join(['assets','mouse','triangle.png']),None,'',(0,0,0)),
-            Button(screen,(60,30,'center'),(15,(1,1)),None,os.sep.join(['assets','mouse','triangle.png']),None,'',(0,0,0)),
+            Button(screen,(65,30,'center'),(8,(16,6)),['settings','reset'],os.sep.join(['assets','buttons','long_button.png']),None,'Reset',(0,0,0)),
+            Button(screen,(35,30,'center'),(7.5,(5,5)),None,text='Mouse size',textColor=(0,0,0)),
+            Button(screen,(40,35,'center'),(3,(1,1)),['settings','mouseSize',(20,20)],os.sep.join(['assets','mouse','triangle.png']),None,'',(0,0,0)),
+            Button(screen,(50,35,'center'),(6,(1,1)),['settings','mouseSize',(40,40)],os.sep.join(['assets','mouse','triangle.png']),None,'',(0,0,0)),
+            Button(screen,(60,35,'center'),(9,(1,1)),['settings','mouseSize',(60,60)],os.sep.join(['assets','mouse','triangle.png']),None,'',(0,0,0)),
             #FPS settings
             Button(screen,(65,45,'center'),(8,(16,6)),['settings','reset'],os.sep.join(['assets','buttons','long_button.png']),None,'Reset',(0,0,0)),
             Button(screen,(35,45,'center'),(7.5,(5,5)),None,text='FPS',textColor=(0,0,0)),
