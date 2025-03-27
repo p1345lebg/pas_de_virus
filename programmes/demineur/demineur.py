@@ -31,5 +31,4 @@ class Demineur:
                 return output
             
     def handle_game(self, input):
-        print(input)
         self.active = Game(self.screen, input[0], input[1])

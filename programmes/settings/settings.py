@@ -8,6 +8,9 @@ class Settings:
         with open(os.path.join(self.PATH,'settings.json'),'r') as file:
             self.settings : dict = json.load(file)
         self.saved : bool = True
+        
+        self.MOUSE = pygame.image.load(os.sep.join(['assets','mouse','triangle.png']))
+        self.textureMouse = pygame.transform.scale(self.MOUSE,self.settings['mouseSize'])
 
 
     def handle_input(self, input):
@@ -18,6 +21,7 @@ class Settings:
                         json.dump(self.settings, file, indent=2)
                         pygame.display.set_mode(self.settings['windowSize'])
                     self.saved = True
+                    self.textureMouse = pygame.transform.scale(self.MOUSE,self.settings['mouseSize'])
 
             case 'windowSize':
                 self.settings['windowSize'] = input[1] if type(input[1]) == tuple else (960,600)
@@ -52,3 +56,7 @@ class Settings:
     
     def get_mouse_size(self):
         return self.settings['mouseSize']
+    
+    def get_mouse_texture(self):
+        return self.textureMouse
+        

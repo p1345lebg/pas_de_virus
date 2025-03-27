@@ -2,6 +2,8 @@ import pygame
 import os
 from random import sample
 
+from programmes.components import BackgroundTileSheet
+
 class Tile:
     def __init__(self, coordonatesGrid : tuple[int,int], size:int) -> None:
         self.coordonatesGrid : tuple[int,int] = coordonatesGrid
@@ -122,10 +124,10 @@ class Tile:
 
 class Game:
     def __init__(self, screen : pygame.Surface, gridSize : tuple[int,int], nbMines : int) -> None:
-
         self.screen : pygame.Surface = screen
+        self.backgound = BackgroundTileSheet(self.screen, os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
 
-        self.window_screen : pygame.Surface = pygame.Surface(self.screen.get_size())
+        #self.window_screen : pygame.Surface = pygame.Surface(self.screen.get_size())
         self.window_pos : tuple[int,int] = (0,0)
 
         self.mines_not_generated : bool = True
@@ -136,13 +138,17 @@ class Game:
         self.nbMines : int = nbMines
         self.flagsLeft : int = self.nbMines
         
-        x,y = self.window_screen.get_size()
+        x,y = self.screen.get_size()
         self.tile_size : int = y // self.gridSize[1]
-        #self.window_pos = ((x-self.tile_size*self.gridSize[0])//2)
+        self.window_pos = ((x-self.tile_size*self.gridSize[0])//2,0)
         if self.tile_size * self.gridSize[0] > x:
             self.tile_size = x // self.gridSize[0]
             truc = self.gridSize[0]
-            #self.window_pos = ((y-self.tile_size*self.gridSize[1])//2)
+            self.window_pos = (0,(y-self.tile_size*self.gridSize[1])//2)
+
+        self.window_screen : pygame.Surface = pygame.Surface((self.tile_size*gridSize[0],self.tile_size*gridSize[1]))
+
+        
 
 
         self.tiles : set[Tile] = set()
@@ -209,7 +215,7 @@ class Game:
             tile.draw(self.window_screen)
 
         
-
+        self.backgound.draw()
         self.screen.blit(self.window_screen, self.window_pos)
 
         if self.verify_win():

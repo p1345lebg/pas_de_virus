@@ -44,7 +44,7 @@ class Game:
             
             # Cursor custom
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            self.screen.blit(self.custom_cursor, (mouse_x, mouse_y))
+            self.screen.blit(self.settings.get_mouse_texture(), (mouse_x, mouse_y))
 
             pygame.display.flip()
             clock.tick(self.settings.get_FPS())
