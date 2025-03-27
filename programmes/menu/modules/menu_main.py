@@ -25,14 +25,18 @@ class MenuMain:
             actualise le composant
             retourne une liste contenant les données à traiter
         """
+        output = None
         for event in events:
             if event.type == pygame.MOUSEBUTTONUP:
                 for button in self.buttons:
                     output = button.handle_click()
                     if output:
-                        return output
+                        break
         self.background.draw()
 
         for button in self.buttons:
             button.draw()
+
+        if output:
+            return output
 
