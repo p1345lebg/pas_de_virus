@@ -212,7 +212,7 @@ class Game:
                                 for tile in self.tiles:
                                     tile.showMine = True
                                     self.lose = True
-                            if not self.win:
+                            if not (self.win or self.lose):
                                 self.win = self.verify_win()
 
                 elif event.dict['button'] == 3:
@@ -239,6 +239,11 @@ class Game:
             button.draw()
 
         if self.win:
-            return ['demineur','menu']
+            self.buttons.append(
+                Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','victory_screen.png']),None,'',(0,0,0)),
+                )
+            
         if self.lose :
-            return ['demineur','menu']
+            self.buttons.append(
+                Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','defeat_screen.png']),None,'',(0,0,0))
+                )
