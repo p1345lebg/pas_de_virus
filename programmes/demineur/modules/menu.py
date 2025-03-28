@@ -17,9 +17,9 @@ class Menu:
             Button(screen,(25,50,'center'),(10,(5,5)),['demineur','game',(9,9),10],os.sep.join(['assets','level_icone','easy.png']),None,'',(255,2,10)),
             Button(screen,(25+50/6,60,'center'),(10,(5,5)),['demineur','game',(16,16),40],os.sep.join(['assets','level_icone','oh.png']),None,'',(255,2,10)),
             Button(screen,(25+50/6+50/6,75,'center'),(10,(5,5)),['demineur','game',(30,16),99],os.sep.join(['assets','level_icone','normal.png']),None,'',(255,2,10)),
-            Button(screen,(75-50/6-50/6,75,'center'),(10,(5,5)),['demineur','game',(9,9),10],os.sep.join(['assets','level_icone','hard.png']),None,'',(255,2,10)),
-            Button(screen,(75-50/6,60,'center'),(10,(5,5)),['demineur','game',(9,9),10],os.sep.join(['assets','level_icone','really_hard.png']),None,'',(255,2,10)),
-            Button(screen,(75,50,'center'),(10,(5,5)),['demineur','game',(9,9),10],os.sep.join(['assets','level_icone','diabolical.png']),None,'',(255,2,10))
+            Button(screen,(75-50/6-50/6,75,'center'),(10,(5,5)),['demineur','game',(40,24),199],os.sep.join(['assets','level_icone','hard.png']),None,'',(255,2,10)),
+            Button(screen,(75-50/6,60,'center'),(10,(5,5)),['demineur','game',(50,29),299],os.sep.join(['assets','level_icone','really_hard.png']),None,'',(255,2,10)),
+            Button(screen,(75,50,'center'),(10,(5,5)),['demineur','game',(55,35),399],os.sep.join(['assets','level_icone','diabolical.png']),None,'',(255,2,10))
         }
 
     def update(self, events):

@@ -132,6 +132,7 @@ class Game:
 
         self.mines_not_generated : bool = True
         self.lose = False
+        self.win = False
         
 
         self.gridSize : tuple[int,int] = gridSize
@@ -206,6 +207,7 @@ class Game:
                                 for tile in self.tiles:
                                     tile.showMine = True
                                     self.lose = True
+                            self.win = self.verify_win()
 
                 elif event.dict['button'] == 3:
                     for tile in self.tiles:
@@ -218,7 +220,7 @@ class Game:
         self.backgound.draw()
         self.screen.blit(self.window_screen, self.window_pos)
 
-        if self.verify_win():
+        if self.win:
             return ['demineur','menu']
         if self.lose :
             return ['demineur','menu']
