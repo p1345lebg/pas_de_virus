@@ -225,7 +225,7 @@ class Game:
         for tile in self.tiles:
             tile.draw(self.window_screen)
                 
-
+    
         
         if output:
             return output
@@ -234,10 +234,16 @@ class Game:
         self.backgound.draw()
         
         self.screen.blit(self.window_screen, self.window_pos)
-        for button in self.buttons:
-            button.draw()
+        
 
         if self.win:
-            return ['demineur','menu']
+            self.buttons.append(
+                Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','victory_screen.png']),None,'',(0,0,0)),
+                )
+            
         if self.lose :
-            return ['demineur','menu']
+            self.buttons.append(
+                Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','defeat_screen.png']),None,'',(0,0,0))
+                )
+        for button in self.buttons:
+            button.draw()
