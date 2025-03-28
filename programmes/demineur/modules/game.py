@@ -2,7 +2,7 @@ import pygame
 import os
 from random import sample
 
-from programmes.components import BackgroundTileSheet
+from programmes.components import Button,BackgroundTileSheet
 
 class Tile:
     def __init__(self, coordonatesGrid : tuple[int,int], size:int) -> None:
@@ -126,7 +126,11 @@ class Game:
     def __init__(self, screen : pygame.Surface, gridSize : tuple[int,int], nbMines : int) -> None:
         self.screen : pygame.Surface = screen
         self.backgound = BackgroundTileSheet(self.screen, os.sep.join(['assets','SproutTiles','Tilesets','Grass.png']))
-
+        self.buttons = [
+            #Back button
+            Button(screen,(0,0,'top-left'),(5,(5,5)),['demineur', 'menu'],os.sep.join(['assets','buttons','back.png']),None,'',(0,0,0)),
+            Button(screen,(0,5,'top-left'),(5,(5,5)),['demineur', 'menu'],text='Back',textColor=(0,0,0))
+            ]
         #self.window_screen : pygame.Surface = pygame.Surface(self.screen.get_size())
         self.window_pos : tuple[int,int] = (0,0)
 
@@ -195,6 +199,7 @@ class Game:
 
 
     def update(self, events) -> None:
+        output = None
         for event in events:
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.dict['button'] == 1:
@@ -213,12 +218,24 @@ class Game:
                     for tile in self.tiles:
                         if tile.is_touched((event.dict['pos'][0]-self.window_pos[0], event.dict['pos'][1]-self.window_pos[1])):
                             tile.toggle_flag()
+                for button in self.buttons:
+                    output = button.handle_click()
+                    if output:
+                        break
         for tile in self.tiles:
             tile.draw(self.window_screen)
+                
+
+        
+        if output:
+            return output
 
         
         self.backgound.draw()
+        
         self.screen.blit(self.window_screen, self.window_pos)
+        for button in self.buttons:
+            button.draw()
 
         if self.win:
             return ['demineur','menu']
