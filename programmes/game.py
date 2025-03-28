@@ -14,7 +14,7 @@ class Game:
         PATH_ASSETS = os.sep.join(['assets'])
         self.settings : Settings = Settings()
         self.screen = pygame.display.set_mode(self.settings.get_window_size())
-        pygame.display.set_caption('mon jeu')
+        pygame.display.set_caption('LeS aVeNTuReS DeS DaNNieS')
         pygame.display.set_icon(pygame.image.load(os.sep.join([PATH_ASSETS,'icone.png'])).convert_alpha())
 
         pygame.mouse.set_visible(False)
