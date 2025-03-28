@@ -212,8 +212,15 @@ class Game:
                                 for tile in self.tiles:
                                     tile.showMine = True
                                     self.lose = True
+                                    self.buttons.append(
+                                        Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','defeat_screen.png']),None,'',(0,0,0))
+                                        )
                             if not (self.win or self.lose):
                                 self.win = self.verify_win()
+                                if self.win :
+                                    self.buttons.append(
+                                        Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','victory_screen.png']),None,'',(0,0,0)),
+                                        )
 
                 elif event.dict['button'] == 3:
                     for tile in self.tiles:
@@ -226,24 +233,17 @@ class Game:
         for tile in self.tiles:
             tile.draw(self.window_screen)
                 
+            tile.draw(self.window_screen)
+                
 
         
         if output:
             return output
-
-        
         self.backgound.draw()
         
         self.screen.blit(self.window_screen, self.window_pos)
         for button in self.buttons:
             button.draw()
 
-        if self.win:
-            self.buttons.append(
-                Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','victory_screen.png']),None,'',(0,0,0)),
-                )
             
-        if self.lose :
-            self.buttons.append(
-                Button(self.screen,(50,50,'center'),(25,(5,5)),['demineur', 'menu'],os.sep.join(['assets','demineur','defeat_screen.png']),None,'',(0,0,0))
-                )
+        

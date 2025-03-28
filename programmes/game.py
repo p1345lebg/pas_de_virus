@@ -15,7 +15,7 @@ class Game:
         self.settings : Settings = Settings()
         self.screen = pygame.display.set_mode(self.settings.get_window_size())
         pygame.display.set_caption('LeS aVeNTuReS DeS DaNNieS')
-        pygame.display.set_icon(pygame.image.load(os.sep.join([PATH_ASSETS,'icone.png'])).convert_alpha())
+        pygame.display.set_icon(pygame.image.load(os.sep.join(['assets','icone.png'])).convert_alpha())
 
         pygame.mouse.set_visible(False)
         PATH_ASSETS_CUTE = os.sep.join(['assets','SproutLand'])
